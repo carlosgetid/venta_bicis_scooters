@@ -241,4 +241,4 @@ select * from TB_SCOOTER
 /*CADA INSERCION TIENE QUE ESTAR BIEN REALIZADA*/
 
 
-
+select * from dbo.TB_UBIGEO
