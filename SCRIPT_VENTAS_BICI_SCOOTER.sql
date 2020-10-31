@@ -16,18 +16,18 @@ GO
 
 CREATE TABLE TB_UBIGEO(
 cod_ubigeo int IDENTITY(1,1) PRIMARY KEY not null ,
-cod_departamento int not null,
-cod_provincia int not null,
-cod_distrito int not null,
+cod_departamento varchar(2) not null,
+cod_provincia varchar(2) not null,
+cod_distrito varchar(2) not null,
 descrp_ubigeo varchar(300) not null
 )
 GO
 
 CREATE TABLE TB_DIRECCION(
 cod_direccion int IDENTITY(1,1) PRIMARY KEY not null ,
-cod_departamento int not null,
-cod_provincia int not null,
-cod_distrito int not null,
+cod_departamento varchar(2) not null,
+cod_provincia varchar(2) not null,
+cod_distrito varchar(2) not null,
 )
 GO
 
@@ -186,9 +186,47 @@ ADD CONSTRAINT FK_FACTURA_PEDIDO FOREIGN KEY (nro_pedido) REFERENCES TB_PEDIDO(n
 
 --INSERT MARCA (TODAS LAS MARCAS DEL MERCADO QUE PRODUCEN NUESTROS PRODUCTOS )
 
+--SCOOTER
+
+INSERT TB_MARCA VALUES('Xiomi')
+INSERT TB_MARCA VALUES('Cecotec')
+INSERT TB_MARCA VALUES('Segway Ninebot')
+INSERT TB_MARCA VALUES('Razor Power')
+INSERT TB_MARCA VALUES('Revolt')
+
+--BICICLETA
+INSERT TB_MARCA VALUES('Monark')
+INSERT TB_MARCA VALUES('Monarette')
+INSERT TB_MARCA VALUES('Giant')
+INSERT TB_MARCA VALUES('Liv')
+INSERT TB_MARCA VALUES('Felt')
+
+
+SELECT * FROM TB_MARCA
 
 --INSERT SCOOTER (10 A 15)
 
+INSERT TB_SCOOTER VALUES('Scooter Eléctrico XIAOMI M365 PRO',1,'Neumaticos de 8.5 pulgadas inflables','Negro','25 km/h','Brushless 300W','De disco ventilado trasero de 120 mm y un sistema de frenos antibloqueo regenerativo E-ABS delantero','Aleación de aluminio',1899,5)
+
+INSERT TB_SCOOTER VALUES('Scooter electrico Xiaomi M365',1,'Neumaticos de 8.5 pulgadas inflables','Negro','25 km/h','Brushless 250W','Sistema de frenado de disco y un sistema de frenado antibloqueo regenerativo eABS','Aleación de aluminio',1399,2)
+
+INSERT TB_SCOOTER VALUES('Scooter electrico Bongo Serie S Unlimited',2,'Tubeless antirreventón de 10 pulgadas','Negro','25 km/h','Potencia nominal de 350W','Doble disco de freno delantero y trasero','Aleación de aluminio',2321,3)
+
+INSERT TB_SCOOTER VALUES('Scooter electrico Bongo Serie A',2,'Tubeless antirreventón de 8,5 pulgadas','Gris','25 km/h','Potencia nominal de 350W','Triple sistema de frenado de seguridad extrema disco-electrico-manual','Aleación de aluminio',1264.57,4)
+
+INSERT TB_SCOOTER VALUES('Scooter Eléctrico Ninebot Max G30P',3,'Neumatico de 10 pulgadas','Gris','25 km/h','350W Brushless','De tambor delantero mecánico simultáneo y el posterior eléctrico regenerativo','Aleación de aluminio',2799,2)
+
+INSERT TB_SCOOTER VALUES('Scooter electrico Ninebot ES3',3,'Llanta sólida de 8 pulgadas','Negro','25 km/h','Potencia nominal de 250W','Electrónico y mecánico','Aleación de aluminio',1999.5,5)
+
+INSERT TB_SCOOTER VALUES('Scooter electrico Razor E300',4,'Neumático de 10 pulgadas inflables','Gris','24 km/h','Potencia de 250W','Delantero','Aleación de aluminio',999.89,3)
+
+INSERT TB_SCOOTER VALUES('Scooter eléctrico E-Prime III',4,'Neumático delantero de 8 pulgada','Negro','18 km/h','Potencia de 250W','Trasero','Aleación de aluminio',1649.33,2)
+
+INSERT TB_SCOOTER VALUES('Scooter eléctrico N4',5,'Neumático delantero de 8 pulgadas con cámara','Negro','25 km/h','Brushless 300W','De disco delantero y freno de pie posterior','Aleación de aluminio',1199,2)
+
+INSERT TB_SCOOTER VALUES('Scooter Electrico Silver N2',5,'Llantas de 8.5 tubeless','Gris','25 km/h','Brushless 250W','Delantero','Aleación de aluminio',1099,2)
+
+select * from TB_SCOOTER
 
 --INSERT ACCESORIO (10 A 15)
 
