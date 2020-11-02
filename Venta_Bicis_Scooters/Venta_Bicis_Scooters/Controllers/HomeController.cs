@@ -12,6 +12,13 @@ namespace Venta_Bicis_Scooters.Controllers
         {
             return View();
         }
+        
+        //VISTA ADMINISTRADOR
+       public ActionResult PrincipalAdmin()
+        {
+            return View();
+        }
+
 
         public ActionResult About()
         {

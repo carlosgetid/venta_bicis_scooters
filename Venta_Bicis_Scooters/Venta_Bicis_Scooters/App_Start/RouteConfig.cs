@@ -16,7 +16,7 @@ namespace Venta_Bicis_Scooters
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "PrincipalAdmin", id = UrlParameter.Optional }
             );
         }
     }
