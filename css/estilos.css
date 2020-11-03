@@ -1,0 +1,17 @@
+html,body{
+    height: 100%;
+}
+
+.contenedor{
+    height: 100%;
+
+}
+
+.contenedorBanner{
+    height: 33%;
+}
+
+.slogan{
+    text-align: center;
+    font-style: italic;
+}
