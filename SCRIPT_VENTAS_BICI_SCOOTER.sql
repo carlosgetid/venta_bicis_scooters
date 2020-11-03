@@ -63,6 +63,14 @@ descrp_marca varchar(200) not null
 )
 GO
 
+
+CREATE TABLE TB_IMAGENES(
+cod_imagen int IDENTITY(1,1) primary key not null,
+descrp_imagen varchar(500) not null,
+url_imagen image not null
+)
+GO
+
 CREATE TABLE TB_SCOOTER(
 cod_scooter int IDENTITY(1,1) primary key not null,
 descrp_scooter varchar(350) not null,
@@ -75,6 +83,7 @@ freno_scooter varchar(200) not null,
 material_scooter varchar(200) not null,
 precio_scooter decimal not null,
 stock_scooter int not null,
+cod_imagen int
 )
 GO
 
@@ -89,6 +98,7 @@ duracion_accesorio varchar(200) not null,
 dimension_accesorio varchar(200) not null,
 precio_accesorio decimal not null,
 stock_accesorio int not null,
+cod_imagen int
 )
 GO
 
@@ -102,6 +112,7 @@ freno_bicicleta varchar(200) not null,
 peso_bicicleta varchar(200) not null,
 precio_bicicleta decimal not null,
 stock_bicicleta int not null,
+cod_imagen int
 )
 GO
 
@@ -115,6 +126,30 @@ cod_bicicleta int not null,
 cod_scooter int not null
 )
 GO
+
+
+CREATE TABLE TB_DETALLE_PEDIDO_SCOOTER(
+cod_pedido_scooter int IDENTITY(1,1) primary key not null,
+nro_pedido int not null,
+cod_scooter int not null
+)
+GO
+
+
+CREATE TABLE TB_DETALLE_PEDIDO_ACCESORIO(
+cod_pedido_accesorio int IDENTITY(1,1) primary key not null,
+nro_pedido int not null,
+cod_accesorio int not null
+)
+GO
+
+CREATE TABLE TB_DETALLE_PEDIDO_BICICLETA(
+cod_pedido_bicicleta int IDENTITY(1,1) primary key not null,
+nro_pedido int not null,
+cod_bicicleta int not null
+)
+GO
+
 
 CREATE TABLE TB_BOLETA(
 nro_boleta int IDENTITY(1,1) primary key not null,
@@ -168,6 +203,30 @@ ADD CONSTRAINT FK_BOLETA_PEDIDO FOREIGN KEY (nro_pedido) REFERENCES TB_PEDIDO(nr
 ALTER TABLE TB_FACTURA
 ADD CONSTRAINT FK_FACTURA_PEDIDO FOREIGN KEY (nro_pedido) REFERENCES TB_PEDIDO(nro_pedido)
 
+
+
+ALTER TABLE TB_BICICLETA
+ADD CONSTRAINT FK_BICICLETA_IMAGENES FOREIGN KEY (cod_imagen) REFERENCES TB_IMAGENES(cod_imagen)
+ALTER TABLE TB_ACCESORIO
+ADD CONSTRAINT FK_ACCESORIO_IMAGENES FOREIGN KEY (cod_imagen) REFERENCES TB_IMAGENES(cod_imagen)
+ALTER TABLE TB_SCOOTER
+ADD CONSTRAINT FK_SCOOTER_IMAGENES FOREIGN KEY (cod_imagen) REFERENCES TB_IMAGENES(cod_imagen)
+
+
+
+ALTER TABLE TB_DETALLE_PEDIDO_SCOOTER
+ADD CONSTRAINT FK_DETALLE_SCOOTER FOREIGN KEY (cod_scooter) REFERENCES TB_SCOOTER(cod_scooter)
+ALTER TABLE TB_DETALLE_PEDIDO_ACCESORIO
+ADD CONSTRAINT FK_DETALLE_ACCESORIO FOREIGN KEY (cod_accesorio) REFERENCES TB_ACCESORIO(cod_accesorio)
+ALTER TABLE TB_DETALLE_PEDIDO_BICICLETA
+ADD CONSTRAINT FK_DETALLE_BICICLETA FOREIGN KEY (cod_bicicleta) REFERENCES TB_BICICLETA(cod_bicicleta)
+
+ALTER TABLE TB_DETALLE_PEDIDO_SCOOTER
+ADD CONSTRAINT FK_DETALLE_PEDIDO_SCOOTER FOREIGN KEY (nro_pedido) REFERENCES TB_PEDIDO(nro_pedido)
+ALTER TABLE TB_DETALLE_PEDIDO_ACCESORIO
+ADD CONSTRAINT FK_DETALLE_PEDIDO_ACCESORIO FOREIGN KEY (nro_pedido) REFERENCES TB_PEDIDO(nro_pedido)
+ALTER TABLE TB_DETALLE_PEDIDO_BICICLETA
+ADD CONSTRAINT FK_DETALLE_PEDIDO_BICICLETA FOREIGN KEY (nro_pedido) REFERENCES TB_PEDIDO(nro_pedido)
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 					/*INSERTANDO REGISTROS NECESARIO*/
