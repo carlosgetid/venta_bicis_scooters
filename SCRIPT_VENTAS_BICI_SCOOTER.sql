@@ -314,3 +314,44 @@ select * from TB_SCOOTER
 
 
 select * from dbo.TB_UBIGEO
+
+
+create proc usp_Cliente_Buscar
+@username_cliente varchar(10),@paswoord_cliente varchar(10),@nom_cliente varchar(200),@ape_cliente varchar(200)
+as
+begin
+	select username_cliente,paswoord_cliente,@nom_cliente,@ape_cliente from BD_VENTAS_BICICLETA_SCOOTER.dbo.TB_CLIENTE 
+	where username_cliente=@username_cliente and paswoord_cliente=@paswoord_cliente
+end 
+go
+/*----------------------------------------------------------------------------------------------------------------*/
+create proc usp_Cliente_Insertar
+@nom_cliente varchar(200),@ape_cliente varchar(200),@dni_cliente char(8),@correo_cliente varchar(250),@cel_cliente char(9),
+@cod_direccion int,@username_cliente varchar(10),@paswoord_cliente varchar(10)
+as
+begin
+	insert dbo.TB_CLIENTE(nom_cliente,ape_cliente,dni_cliente,correo_cliente,cel_cliente,cod_direccion,username_cliente,paswoord_cliente,Activo)
+	Values(@nom_cliente,@ape_cliente,@dni_cliente,@correo_cliente,@cel_cliente,@cod_direccion,@username_cliente,@paswoord_cliente,1)
+end 
+go
+/*----------------------------------------------------------------------------------------------------------------*/
+create proc usp_Cliente_Actualizar
+@cod_cliente int,@nom_cliente varchar(200),@ape_cliente varchar(200),@dni_cliente char(8),@correo_cliente varchar(250),@cel_cliente char(9),
+@cod_direccion int,@username_cliente varchar(10),@paswoord_cliente varchar(10)
+as
+begin	
+	update dbo.TB_CLIENTE set nom_cliente=@nom_cliente,ape_cliente=@ape_cliente,dni_cliente=@dni_cliente,correo_cliente=@correo_cliente,cel_cliente=@cel_cliente,
+	cod_direccion=@cod_direccion,username_cliente=@username_cliente,paswoord_cliente=@paswoord_cliente where cod_cliente=@cod_cliente
+end 
+go
+
+
+Alter table dbo.TB_CLIENTE
+add Activo bit
+go
+
+update dbo.TB_CLIENTE set Activo=1
+go
+
+select*from TB_CLIENTE
+
