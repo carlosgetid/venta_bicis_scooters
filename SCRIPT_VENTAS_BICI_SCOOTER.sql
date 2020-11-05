@@ -25,6 +25,9 @@ GO
 
 CREATE TABLE TB_DIRECCION(
 cod_direccion int IDENTITY(1,1) PRIMARY KEY not null ,
+descrip_direccion varchar(250) not null,
+cod_cliente int null,
+cod_trabajador int null,
 cod_departamento varchar(2) not null,
 cod_provincia varchar(2) not null,
 cod_distrito varchar(2) not null,
@@ -40,7 +43,7 @@ correo_trabajador varchar(250) not null,
 cel_trabajador char(9) not null,
 cod_direccion int not null,
 username_trabajador varchar(10) not null,
-paswoord_trabajador varchar(10) not null
+password_trabajador varchar(10) not null
 )
 GO
 
@@ -53,7 +56,8 @@ correo_cliente varchar(250) not null,
 cel_cliente char(9) not null,
 cod_direccion int not null,
 username_cliente varchar(10) not null,
-paswoord_cliente varchar(10) not null
+password_cliente varchar(10) not null,
+estado_cliente bit not null
 )
 GO
 
@@ -172,6 +176,12 @@ GO
 ALTER TABLE TB_DIRECCION
 ADD CONSTRAINT FK_DIRECCION_UBIGEO FOREIGN KEY (cod_direccion) REFERENCES TB_UBIGEO(cod_ubigeo)
 
+ALTER TABLE TB_DIRECCION
+ADD CONSTRAINT FK_DIRECCION_CLIENTE FOREIGN KEY (cod_cliente) REFERENCES TB_CLIENTE(cod_cliente)
+
+ALTER TABLE TB_DIRECCION
+ADD CONSTRAINT FK_DIRECCION_TRABAJADOR FOREIGN KEY (cod_trabajador) REFERENCES TB_TRABAJADOR(cod_trabajador)
+
 ALTER TABLE TB_TRABAJADOR
 ADD CONSTRAINT FK_TRABAJADOR_DIRECCION FOREIGN KEY (cod_direccion) REFERENCES TB_DIRECCION(cod_direccion)
 
@@ -227,6 +237,8 @@ ALTER TABLE TB_DETALLE_PEDIDO_ACCESORIO
 ADD CONSTRAINT FK_DETALLE_PEDIDO_ACCESORIO FOREIGN KEY (nro_pedido) REFERENCES TB_PEDIDO(nro_pedido)
 ALTER TABLE TB_DETALLE_PEDIDO_BICICLETA
 ADD CONSTRAINT FK_DETALLE_PEDIDO_BICICLETA FOREIGN KEY (nro_pedido) REFERENCES TB_PEDIDO(nro_pedido)
+
+
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 					/*INSERTANDO REGISTROS NECESARIO*/
@@ -317,11 +329,11 @@ select * from dbo.TB_UBIGEO
 go
 
 create proc usp_Cliente_Buscar
-@username_cliente varchar(10),@paswoord_cliente varchar(10)
+@username_cliente varchar(10),@password_cliente varchar(10)
 as
 begin
-	select username_cliente,paswoord_cliente,nom_cliente,ape_cliente from BD_VENTAS_BICICLETA_SCOOTER.dbo.TB_CLIENTE 
-	where username_cliente=@username_cliente and paswoord_cliente=@paswoord_cliente
+	select username_cliente,password_cliente,nom_cliente,ape_cliente from BD_VENTAS_BICICLETA_SCOOTER.dbo.TB_CLIENTE 
+	where username_cliente=@username_cliente and password_cliente=@password_cliente
 end 
 go
 
@@ -329,11 +341,8 @@ go
 
 
 /*** añadir columna a tabla cliente *****/
-Alter table dbo.TB_CLIENTE
-add Activo bit
-go
 
-update dbo.TB_CLIENTE set Activo=1
+update dbo.TB_CLIENTE set estado_cliente=1
 go
 
 select*from TB_CLIENTE
@@ -342,11 +351,11 @@ go
 
 create proc usp_Cliente_Insertar
 @nom_cliente varchar(200),@ape_cliente varchar(200),@dni_cliente char(8),@correo_cliente varchar(250),@cel_cliente char(9),
-@cod_direccion int,@username_cliente varchar(10),@paswoord_cliente varchar(10)
+@cod_direccion int,@username_cliente varchar(10),@password_cliente varchar(10)
 as
 begin
-	insert dbo.TB_CLIENTE(nom_cliente,ape_cliente,dni_cliente,correo_cliente,cel_cliente,cod_direccion,username_cliente,paswoord_cliente,Activo)
-	Values(@nom_cliente,@ape_cliente,@dni_cliente,@correo_cliente,@cel_cliente,@cod_direccion,@username_cliente,@paswoord_cliente,1)
+	insert dbo.TB_CLIENTE(nom_cliente,ape_cliente,dni_cliente,correo_cliente,cel_cliente,cod_direccion,username_cliente,password_cliente,estado_cliente)
+	Values(@nom_cliente,@ape_cliente,@dni_cliente,@correo_cliente,@cel_cliente,@cod_direccion,@username_cliente,@password_cliente,1)
 end 
 go
 
@@ -354,11 +363,11 @@ go
 
 create proc usp_Cliente_Actualizar
 @cod_cliente int,@nom_cliente varchar(200),@ape_cliente varchar(200),@dni_cliente char(8),@correo_cliente varchar(250),@cel_cliente char(9),
-@cod_direccion int,@username_cliente varchar(10),@paswoord_cliente varchar(10)
+@cod_direccion int,@username_cliente varchar(10),@password_cliente varchar(10)
 as
 begin	
 	update dbo.TB_CLIENTE set nom_cliente=@nom_cliente,ape_cliente=@ape_cliente,dni_cliente=@dni_cliente,correo_cliente=@correo_cliente,cel_cliente=@cel_cliente,
-	cod_direccion=@cod_direccion,username_cliente=@username_cliente,paswoord_cliente=@paswoord_cliente where cod_cliente=@cod_cliente
+	cod_direccion=@cod_direccion,username_cliente=@username_cliente,password_cliente=@password_cliente where cod_cliente=@cod_cliente
 end 
 go
 
