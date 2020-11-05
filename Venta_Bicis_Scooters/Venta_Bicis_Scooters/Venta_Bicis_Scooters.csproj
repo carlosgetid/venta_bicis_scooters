@@ -149,6 +149,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cccliente\estilo.css" />
     <Content Include="Content\cccliente\estiloCarouselAbajo.css" />
+    <Content Include="Content\cccliente\estiloImagenes.css" />
     <Content Include="Content\cssadmin\css\bootstrap-material-design.min.css" />
     <Content Include="Content\cssadmin\css\bootstrap.min.css" />
     <Content Include="Content\cssadmin\css\jquery.mCustomScrollbar.css" />
