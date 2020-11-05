@@ -277,19 +277,6 @@ SELECT * FROM TB_MARCA
 
 --INSERT SCOOTER (10 A 15)
 
-/* cod_scooter int IDENTITY(1,1) primary key not null,
-descrp_scooter varchar(350) not null,
-cod_marca int not null,
-aro_scooter varchar(200) not null,
-color_scooter varchar(200) not null,
-velocidad_scooter varchar(200) not null,
-motor_scooter varchar(200) not null,
-freno_scooter varchar(200) not null,
-material_scooter varchar(200) not null,
-precio_scooter decimal not null,
-stock_scooter int not null,
-cod_imagen int */
-
 INSERT TB_SCOOTER VALUES('Scooter Eléctrico XIAOMI M365 PRO',1,'Neumaticos de 8.5 pulgadas inflables','Negro','25 km/h','Brushless 300W','De disco ventilado trasero de 120 mm y un sistema de frenos antibloqueo regenerativo E-ABS delantero','Aleación de aluminio',1899,5,null)
 
 INSERT TB_SCOOTER VALUES('Scooter electrico Xiaomi M365',1,'Neumaticos de 8.5 pulgadas inflables','Negro','25 km/h','Brushless 250W','Sistema de frenado de disco y un sistema de frenado antibloqueo regenerativo eABS','Aleación de aluminio',1399,2,null)
@@ -311,6 +298,7 @@ INSERT TB_SCOOTER VALUES('Scooter eléctrico N4',5,'Neumático delantero de 8 pulg
 INSERT TB_SCOOTER VALUES('Scooter Electrico Silver N2',5,'Llantas de 8.5 tubeless','Gris','25 km/h','Brushless 250W','Delantero','Aleación de aluminio',1099,2,null)
 
 select * from TB_SCOOTER
+go
 
 --INSERT ACCESORIO (10 A 15)
 
@@ -325,29 +313,29 @@ select * from TB_SCOOTER
 /*CADA INSERCION TIENE QUE ESTAR BIEN REALIZADA*/
 
 
-select * from dbo.TB_UBIGEO
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+														/*GENERAR SP*/
+
+/*** TABLA CLIENTE *****/
+
+update dbo.TB_CLIENTE set estado_cliente=1
 go
+
+/*-------------------------------------------------------*/
 
 create proc usp_Cliente_Buscar
 @username_cliente varchar(10),@password_cliente varchar(10)
 as
 begin
-	select username_cliente,password_cliente,nom_cliente,ape_cliente from BD_VENTAS_BICICLETA_SCOOTER.dbo.TB_CLIENTE 
+	select username_cliente,password_cliente,nom_cliente,ape_cliente 
+	from TB_CLIENTE 
 	where username_cliente=@username_cliente and password_cliente=@password_cliente
 end 
 go
 
-/*----------------------------------------------------------------------------------------------------------------*/
-
-
-/*** añadir columna a tabla cliente *****/
-
-update dbo.TB_CLIENTE set estado_cliente=1
-go
-
-select*from TB_CLIENTE
-go
-/****************************/
 
 create proc usp_Cliente_Insertar
 @nom_cliente varchar(200),@ape_cliente varchar(200),@dni_cliente char(8),@correo_cliente varchar(250),@cel_cliente char(9),
@@ -359,16 +347,26 @@ begin
 end 
 go
 
-/*----------------------------------------------------------------------------------------------------------------*/
 
 create proc usp_Cliente_Actualizar
 @cod_cliente int,@nom_cliente varchar(200),@ape_cliente varchar(200),@dni_cliente char(8),@correo_cliente varchar(250),@cel_cliente char(9),
 @cod_direccion int,@username_cliente varchar(10),@password_cliente varchar(10)
 as
 begin	
-	update dbo.TB_CLIENTE set nom_cliente=@nom_cliente,ape_cliente=@ape_cliente,dni_cliente=@dni_cliente,correo_cliente=@correo_cliente,cel_cliente=@cel_cliente,
-	cod_direccion=@cod_direccion,username_cliente=@username_cliente,password_cliente=@password_cliente where cod_cliente=@cod_cliente
+	update dbo.TB_CLIENTE 
+	set nom_cliente=@nom_cliente,
+		ape_cliente=@ape_cliente,
+		dni_cliente=@dni_cliente,
+		correo_cliente=@correo_cliente,
+		cel_cliente=@cel_cliente,
+	    cod_direccion=@cod_direccion,
+		username_cliente=@username_cliente,
+		password_cliente=@password_cliente
+	where cod_cliente=@cod_cliente
 end 
 go
+
+
+
 
 
