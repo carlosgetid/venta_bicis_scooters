@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BD_VENTAS_BICICLETA_SCOOTERModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BD_VENTAS_BICICLETA_SCOOTERModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <Function Name="usp_Cliente_Actualizar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cod_cliente" Type="int" Mode="In" />
           <Parameter Name="nom_cliente" Type="varchar" Mode="In" />
@@ -14,13 +14,11 @@
           <Parameter Name="cel_cliente" Type="char" Mode="In" />
           <Parameter Name="cod_direccion" Type="int" Mode="In" />
           <Parameter Name="username_cliente" Type="varchar" Mode="In" />
-          <Parameter Name="paswoord_cliente" Type="varchar" Mode="In" />
+          <Parameter Name="password_cliente" Type="varchar" Mode="In" />
         </Function>
         <Function Name="usp_Cliente_Buscar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username_cliente" Type="varchar" Mode="In" />
-          <Parameter Name="paswoord_cliente" Type="varchar" Mode="In" />
-          <Parameter Name="nom_cliente" Type="varchar" Mode="In" />
-          <Parameter Name="ape_cliente" Type="varchar" Mode="In" />
+          <Parameter Name="password_cliente" Type="varchar" Mode="In" />
         </Function>
         <Function Name="usp_Cliente_Insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nom_cliente" Type="varchar" Mode="In" />
@@ -30,11 +28,10 @@
           <Parameter Name="cel_cliente" Type="char" Mode="In" />
           <Parameter Name="cod_direccion" Type="int" Mode="In" />
           <Parameter Name="username_cliente" Type="varchar" Mode="In" />
-          <Parameter Name="paswoord_cliente" Type="varchar" Mode="In" />
+          <Parameter Name="password_cliente" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="BD_VENTAS_BICICLETA_SCOOTERModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BD_VENTAS_BICICLETA_SCOOTERModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -48,13 +45,11 @@
             <Parameter Name="cel_cliente" Mode="In" Type="String" />
             <Parameter Name="cod_direccion" Mode="In" Type="Int32" />
             <Parameter Name="username_cliente" Mode="In" Type="String" />
-            <Parameter Name="paswoord_cliente" Mode="In" Type="String" />
+            <Parameter Name="password_cliente" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="usp_Cliente_Buscar" ReturnType="Collection(BD_VENTAS_BICICLETA_SCOOTERModel.usp_Cliente_Buscar_Result)">
             <Parameter Name="username_cliente" Mode="In" Type="String" />
-            <Parameter Name="paswoord_cliente" Mode="In" Type="String" />
-            <Parameter Name="nom_cliente" Mode="In" Type="String" />
-            <Parameter Name="ape_cliente" Mode="In" Type="String" />
+            <Parameter Name="password_cliente" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="usp_Cliente_Insertar">
             <Parameter Name="nom_cliente" Mode="In" Type="String" />
@@ -64,15 +59,15 @@
             <Parameter Name="cel_cliente" Mode="In" Type="String" />
             <Parameter Name="cod_direccion" Mode="In" Type="Int32" />
             <Parameter Name="username_cliente" Mode="In" Type="String" />
-            <Parameter Name="paswoord_cliente" Mode="In" Type="String" />
+            <Parameter Name="password_cliente" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="usp_Cliente_Buscar_Result">
           <Property Type="String" Name="username_cliente" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="paswoord_cliente" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="Column1" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="Column2" Nullable="true" MaxLength="200" />
-        </ComplexType>
+          <Property Type="String" Name="password_cliente" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="nom_cliente" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="ape_cliente" Nullable="false" MaxLength="200" />
+          </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -84,10 +79,10 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="BD_VENTAS_BICICLETA_SCOOTERModel.usp_Cliente_Buscar_Result">
                 <ScalarProperty Name="username_cliente" ColumnName="username_cliente" />
-                <ScalarProperty Name="paswoord_cliente" ColumnName="paswoord_cliente" />
-                <ScalarProperty Name="Column1" ColumnName="Column1" />
-                <ScalarProperty Name="Column2" ColumnName="Column2" />
-              </ComplexTypeMapping>
+                <ScalarProperty Name="password_cliente" ColumnName="password_cliente" />
+                <ScalarProperty Name="nom_cliente" ColumnName="nom_cliente" />
+                <ScalarProperty Name="ape_cliente" ColumnName="ape_cliente" />
+                </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_Cliente_Insertar" FunctionName="BD_VENTAS_BICICLETA_SCOOTERModel.Store.usp_Cliente_Insertar" />

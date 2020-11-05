@@ -14,8 +14,8 @@ namespace Venta_Bicis_Scooters.Models
     public partial class usp_Cliente_Buscar_Result
     {
         public string username_cliente { get; set; }
-        public string paswoord_cliente { get; set; }
-        public string Column1 { get; set; }
-        public string Column2 { get; set; }
+        public string password_cliente { get; set; }
+        public string nom_cliente { get; set; }
+        public string ape_cliente { get; set; }
     }
 }

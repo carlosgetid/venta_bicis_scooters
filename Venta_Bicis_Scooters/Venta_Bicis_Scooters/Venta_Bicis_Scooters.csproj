@@ -141,10 +141,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BicisScootersModelo.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BicisScootersModelo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BicisScootersModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BicisScootersModelo.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BicisScootersModelo.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_Cliente_Buscar_Result.cs">
+      <DependentUpon>BicisScootersModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -2045,6 +2053,12 @@
     <Content Include="Models\BicisScootersModelo.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BicisScootersModelo.Context.cs</LastGenOutput>
+      <DependentUpon>BicisScootersModelo.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\BicisScootersModelo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BicisScootersModelo.edmx</DependentUpon>
+      <LastGenOutput>BicisScootersModelo.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -2074,9 +2088,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BicisScootersModelo.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\BicisScootersModelo.edmx.diagram">
+    <Content Include="Models\BicisScootersModelo.edmx.diagram">
       <DependentUpon>BicisScootersModelo.edmx</DependentUpon>
-    </None>
+    </Content>
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />

@@ -83,3 +83,8 @@ C:\Users\carlo\Documents\proyectoDSWcode\Venta_Bicis_Scooters\Venta_Bicis_Scoote
 C:\Users\carlo\Documents\proyectoDSWcode\Venta_Bicis_Scooters\Venta_Bicis_Scooters\obj\Debug\Venta_Bicis_Scooters.csproj.CopyComplete
 C:\Users\carlo\Documents\proyectoDSWcode\Venta_Bicis_Scooters\Venta_Bicis_Scooters\obj\Debug\Venta_Bicis_Scooters.dll
 C:\Users\carlo\Documents\proyectoDSWcode\Venta_Bicis_Scooters\Venta_Bicis_Scooters\obj\Debug\Venta_Bicis_Scooters.pdb
+C:\Users\carlo\Documents\proyectoDSWcode\Venta_Bicis_Scooters\Venta_Bicis_Scooters\bin\EntityFramework.dll
+C:\Users\carlo\Documents\proyectoDSWcode\Venta_Bicis_Scooters\Venta_Bicis_Scooters\bin\EntityFramework.SqlServer.dll
+C:\Users\carlo\Documents\proyectoDSWcode\Venta_Bicis_Scooters\Venta_Bicis_Scooters\bin\EntityFramework.xml
+C:\Users\carlo\Documents\proyectoDSWcode\Venta_Bicis_Scooters\Venta_Bicis_Scooters\bin\EntityFramework.SqlServer.xml
+C:\Users\carlo\Documents\proyectoDSWcode\Venta_Bicis_Scooters\Venta_Bicis_Scooters\obj\Debug\Venta_Bicis_Scooters.csprojAssemblyReference.cache

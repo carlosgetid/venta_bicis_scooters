@@ -28,7 +28,7 @@ namespace Venta_Bicis_Scooters.Models
         }
     
     
-        public virtual int usp_Cliente_Actualizar(Nullable<int> cod_cliente, string nom_cliente, string ape_cliente, string dni_cliente, string correo_cliente, string cel_cliente, Nullable<int> cod_direccion, string username_cliente, string paswoord_cliente)
+        public virtual int usp_Cliente_Actualizar(Nullable<int> cod_cliente, string nom_cliente, string ape_cliente, string dni_cliente, string correo_cliente, string cel_cliente, Nullable<int> cod_direccion, string username_cliente, string password_cliente)
         {
             var cod_clienteParameter = cod_cliente.HasValue ?
                 new ObjectParameter("cod_cliente", cod_cliente) :
@@ -62,35 +62,27 @@ namespace Venta_Bicis_Scooters.Models
                 new ObjectParameter("username_cliente", username_cliente) :
                 new ObjectParameter("username_cliente", typeof(string));
     
-            var paswoord_clienteParameter = paswoord_cliente != null ?
-                new ObjectParameter("paswoord_cliente", paswoord_cliente) :
-                new ObjectParameter("paswoord_cliente", typeof(string));
+            var password_clienteParameter = password_cliente != null ?
+                new ObjectParameter("password_cliente", password_cliente) :
+                new ObjectParameter("password_cliente", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_Cliente_Actualizar", cod_clienteParameter, nom_clienteParameter, ape_clienteParameter, dni_clienteParameter, correo_clienteParameter, cel_clienteParameter, cod_direccionParameter, username_clienteParameter, paswoord_clienteParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_Cliente_Actualizar", cod_clienteParameter, nom_clienteParameter, ape_clienteParameter, dni_clienteParameter, correo_clienteParameter, cel_clienteParameter, cod_direccionParameter, username_clienteParameter, password_clienteParameter);
         }
     
-        public virtual ObjectResult<usp_Cliente_Buscar_Result> usp_Cliente_Buscar(string username_cliente, string paswoord_cliente, string nom_cliente, string ape_cliente)
+        public virtual ObjectResult<usp_Cliente_Buscar_Result> usp_Cliente_Buscar(string username_cliente, string password_cliente)
         {
             var username_clienteParameter = username_cliente != null ?
                 new ObjectParameter("username_cliente", username_cliente) :
                 new ObjectParameter("username_cliente", typeof(string));
     
-            var paswoord_clienteParameter = paswoord_cliente != null ?
-                new ObjectParameter("paswoord_cliente", paswoord_cliente) :
-                new ObjectParameter("paswoord_cliente", typeof(string));
+            var password_clienteParameter = password_cliente != null ?
+                new ObjectParameter("password_cliente", password_cliente) :
+                new ObjectParameter("password_cliente", typeof(string));
     
-            var nom_clienteParameter = nom_cliente != null ?
-                new ObjectParameter("nom_cliente", nom_cliente) :
-                new ObjectParameter("nom_cliente", typeof(string));
-    
-            var ape_clienteParameter = ape_cliente != null ?
-                new ObjectParameter("ape_cliente", ape_cliente) :
-                new ObjectParameter("ape_cliente", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_Cliente_Buscar_Result>("usp_Cliente_Buscar", username_clienteParameter, paswoord_clienteParameter, nom_clienteParameter, ape_clienteParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_Cliente_Buscar_Result>("usp_Cliente_Buscar", username_clienteParameter, password_clienteParameter);
         }
     
-        public virtual int usp_Cliente_Insertar(string nom_cliente, string ape_cliente, string dni_cliente, string correo_cliente, string cel_cliente, Nullable<int> cod_direccion, string username_cliente, string paswoord_cliente)
+        public virtual int usp_Cliente_Insertar(string nom_cliente, string ape_cliente, string dni_cliente, string correo_cliente, string cel_cliente, Nullable<int> cod_direccion, string username_cliente, string password_cliente)
         {
             var nom_clienteParameter = nom_cliente != null ?
                 new ObjectParameter("nom_cliente", nom_cliente) :
@@ -120,11 +112,11 @@ namespace Venta_Bicis_Scooters.Models
                 new ObjectParameter("username_cliente", username_cliente) :
                 new ObjectParameter("username_cliente", typeof(string));
     
-            var paswoord_clienteParameter = paswoord_cliente != null ?
-                new ObjectParameter("paswoord_cliente", paswoord_cliente) :
-                new ObjectParameter("paswoord_cliente", typeof(string));
+            var password_clienteParameter = password_cliente != null ?
+                new ObjectParameter("password_cliente", password_cliente) :
+                new ObjectParameter("password_cliente", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_Cliente_Insertar", nom_clienteParameter, ape_clienteParameter, dni_clienteParameter, correo_clienteParameter, cel_clienteParameter, cod_direccionParameter, username_clienteParameter, paswoord_clienteParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_Cliente_Insertar", nom_clienteParameter, ape_clienteParameter, dni_clienteParameter, correo_clienteParameter, cel_clienteParameter, cod_direccionParameter, username_clienteParameter, password_clienteParameter);
         }
     }
 }
