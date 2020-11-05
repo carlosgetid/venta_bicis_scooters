@@ -7,17 +7,17 @@
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
 
 
-    <link href="~/Content/cccliente/estilo.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/cccliente/estiloCarouselAbajo.css" rel="stylesheet" />
-
+    @Styles.Render("~/Content/css")
 
 </head>
 
 
 <body>
 
- 
+
+
+
+
     <div class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <nav class="navbar navbar-dark bg-dark">
@@ -46,6 +46,7 @@
                     </ul>
                 </div>
             </div>
+
 
 
             <form class="form-inline my-2 my-lg-0">
@@ -83,23 +84,19 @@
 
     <!--JS PARA LOS CARUSELES -->
     <!-- JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
+    @Scripts.Render("~/bundles/jquery")
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
             integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
             crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-            crossorigin="anonymous"></script>
+    @Scripts.Render("~/bundles/bootstrap")
 
     <!-- script de font awesome -->
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
-    <script src="~/Scripts/caruselAbajo.js"></script>
+    @Scripts.Render("~/bundles/carruseles")
+    @*<script src="~/Scripts/caruselAbajo.js"></script>*@
 
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
-
+    @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>*@
 
     @RenderSection("scripts", required: false)
 
