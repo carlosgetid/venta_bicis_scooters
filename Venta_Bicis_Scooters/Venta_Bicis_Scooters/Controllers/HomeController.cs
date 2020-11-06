@@ -21,6 +21,11 @@ namespace Venta_Bicis_Scooters.Controllers
         }
 
 
+        //VISTA DE LOGIN
+        public ActionResult Login()
+        {
+            return View();
+        }
 
 
 
