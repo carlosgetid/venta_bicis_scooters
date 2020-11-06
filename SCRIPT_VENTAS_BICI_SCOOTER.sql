@@ -39,10 +39,11 @@ cod_trabajador int IDENTITY(1,1) primary key not null,
 nom_trabajador varchar(200) not null,
 ape_trabajador varchar(200) not null,
 dni_trabajador char(8) not null,
-correo_trabajador varchar(250) not null,  /*funcionara como username */
+correo_trabajador varchar(250) not null,
 cel_trabajador char(9) not null,
 cod_direccion int not null,
-password_trabajador varchar(10) not null
+username_trabajador varchar(20) null, 
+password_trabajador varchar(20) not null
 )
 GO
 
@@ -54,7 +55,7 @@ dni_cliente char(8) not null,
 correo_cliente varchar(250) not null, /*funcionara como username */
 cel_cliente char(9) not null,
 cod_direccion int not null,
-password_cliente varchar(10) not null,
+password_cliente varchar(20) not null,
 estado_cliente bit not null
 )
 GO
@@ -324,23 +325,23 @@ go
 
 
 create proc usp_Cliente_Buscar
-@username_cliente varchar(10),@password_cliente varchar(10)
+@correo varchar(250),@password_cliente varchar(10)
 as
 begin
-	select username_cliente,password_cliente,nom_cliente,ape_cliente 
+	select correo_cliente,password_cliente,nom_cliente,ape_cliente 
 	from TB_CLIENTE 
-	where username_cliente=@username_cliente and password_cliente=@password_cliente
+	where correo_cliente=@correo and password_cliente=@password_cliente
 end 
 go
 
 
 create proc usp_Cliente_Insertar
 @nom_cliente varchar(200),@ape_cliente varchar(200),@dni_cliente char(8),@correo_cliente varchar(250),@cel_cliente char(9),
-@cod_direccion int,@username_cliente varchar(10),@password_cliente varchar(10)
+@cod_direccion int,@password_cliente varchar(10)
 as
 begin
-	insert dbo.TB_CLIENTE(nom_cliente,ape_cliente,dni_cliente,correo_cliente,cel_cliente,cod_direccion,username_cliente,password_cliente,estado_cliente)
-	Values(@nom_cliente,@ape_cliente,@dni_cliente,@correo_cliente,@cel_cliente,@cod_direccion,@username_cliente,@password_cliente,1)
+	insert dbo.TB_CLIENTE(nom_cliente,ape_cliente,dni_cliente,correo_cliente,cel_cliente,cod_direccion,password_cliente,estado_cliente)
+	Values(@nom_cliente,@ape_cliente,@dni_cliente,@correo_cliente,@cel_cliente,@cod_direccion,@password_cliente,1)
 end 
 go
 
@@ -357,7 +358,6 @@ begin
 		correo_cliente=@correo_cliente,
 		cel_cliente=@cel_cliente,
 	    cod_direccion=@cod_direccion,
-		username_cliente=@username_cliente,
 		password_cliente=@password_cliente
 	where cod_cliente=@cod_cliente
 end 
@@ -398,3 +398,21 @@ begin
 	from TB_MARCA 
 end
 go
+
+
+
+-----------------------------------------------------------------------------
+/*** TABLA TRABAJADOR *****/
+
+create proc usp_Trabajador_Buscar
+@correo
+as
+begin
+	select 
+	from TB_TRABAJADOR
+	where 
+end
+go
+
+
+exec sp_help TB_TRABAJADOR
