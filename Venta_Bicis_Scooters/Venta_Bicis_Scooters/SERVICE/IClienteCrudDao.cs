@@ -16,7 +16,6 @@ namespace Venta_Bicis_Scooters.SERVICE
 
 
         List<T> ListarCliente(int estado);
-        List<T> ListarDireccion();
 
     }
 }

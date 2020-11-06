@@ -60,11 +60,7 @@ namespace Venta_Bicis_Scooters.Models
             throw new NotImplementedException();
         }
 
-        public List<Cliente> ListarDireccion()
-        {
-            throw new NotImplementedException();
-        }
-
+     
 
         public void UpdateCliente(Cliente e)
         {

@@ -324,7 +324,6 @@ go
 update dbo.TB_CLIENTE set estado_cliente=1
 go
 
-/*-------------------------------------------------------*/
 
 create proc usp_Cliente_Buscar
 @username_cliente varchar(10),@password_cliente varchar(10)
@@ -367,6 +366,23 @@ end
 go
 
 
+-----------------------------------------------------------------------------
+/*** TABLA SCOOTER *****/
+
+create proc usp_Scooter_Listar
+as
+begin
+	select cod_scooter,descrp_scooter,s.cod_marca,m.descrp_marca,aro_scooter,color_scooter,velocidad_scooter,motor_scooter,freno_scooter,material_scooter,precio_scooter,stock_scooter
+	from TB_SCOOTER s 
+	join TB_MARCA m on s.cod_marca=m.cod_marca
+end
+go
 
 
-
+create proc usp_Marca_Listar
+as
+begin
+	select cod_marca,descrp_marca
+	from TB_MARCA 
+end
+go

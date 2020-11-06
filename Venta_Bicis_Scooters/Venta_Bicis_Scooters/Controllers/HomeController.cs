@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Venta_Bicis_Scooters.Models;
 
 namespace Venta_Bicis_Scooters.Controllers
 {
     public class HomeController : Controller
     {
+        ScooterCrudDao scooterdao = new ScooterCrudDao();
+        MarcaDao marcadao = new MarcaDao();
+
+
+
         public ActionResult Index()
         {
             return View();
@@ -33,5 +39,20 @@ namespace Venta_Bicis_Scooters.Controllers
 
             return View();
         }
+
+
+
+        /*---------------------------------------SCOOTER-------------------------------*/
+
+        public ActionResult ListarScooter()
+        {
+            return View(scooterdao.ListarScooter().ToList());
+        }
+
+
+
+
+
+
     }
 }

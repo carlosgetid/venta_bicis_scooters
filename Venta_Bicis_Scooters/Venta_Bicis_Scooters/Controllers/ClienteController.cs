@@ -13,8 +13,10 @@ namespace Venta_Bicis_Scooters.Controllers
         // GET: Cliente
 
         ClienteCrudDao clientedao = new ClienteCrudDao();
-     
        
+       
+        /*---------------------------------------CLIENTE-------------------------------*/
+
 
         //VISTA PRINCIPAL DE LA PAGINA
         public ActionResult PrincipalCliente()
@@ -55,6 +57,9 @@ namespace Venta_Bicis_Scooters.Controllers
             }
         }
 
+
+
+     
 
 
 
