@@ -430,3 +430,20 @@ begin
 	join TB_MARCA m on B.cod_marca=m.cod_marca
 end
 go
+
+
+create proc usp_Bicicleta_Consultar
+@descp_bicicleta varchar(350),
+@cod_marca int 
+as
+begin
+	select cod_bicicleta,descrp_bicicleta,m.descrp_marca,aro_bicicleta,color_bicicleta,freno_bicicleta,peso_bicicleta,precio_bicicleta,stock_bicicleta
+	from TB_BICICLETA B
+	join TB_MARCA m on B.cod_marca=m.cod_marca
+	where @descp_bicicleta= '' or UPPER(descrp_bicicleta)=UPPER(@descp_bicicleta) and B.cod_marca=@cod_marca 
+end
+go
+
+
+
+

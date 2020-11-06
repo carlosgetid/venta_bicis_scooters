@@ -16,7 +16,7 @@ namespace Venta_Bicis_Scooters.Controllers
         TrabajadorDao trabajadordao = new TrabajadorDao();
         BicicletaCrudDao bicicletadao = new BicicletaCrudDao();
 
-
+        /*----------------------------------------------------------------------------------------------------------------*/
 
         //VISTA ADMINISTRADOR
         public ActionResult PrincipalAdmin()
@@ -34,12 +34,12 @@ namespace Venta_Bicis_Scooters.Controllers
         }
 
 
+
         //VISTA DE LOGIN
         public ActionResult Login()
         {
             return View();
         }
-
         public ActionResult IniciarSesion(string user, string pass)
         {
             Trabajador t = trabajadordao.BuscarTrabajador(user, pass);
@@ -56,6 +56,7 @@ namespace Venta_Bicis_Scooters.Controllers
                 return RedirectToAction("Login");
             }
         }
+
 
 
 
@@ -76,11 +77,22 @@ namespace Venta_Bicis_Scooters.Controllers
         }
 
 
+
         /*---------------------------------------BICICLETA-------------------------------*/
 
         public ActionResult ListarBicicleta()
         {
             return View(bicicletadao.ListarBicicleta().ToList());
+        }
+
+
+        public ActionResult ConsultarBicicleta(int cod = 0, string descripcion = null)
+        {
+            if (descripcion == null) descripcion = string.Empty;
+            if (cod == 0) cod = 1;
+            ViewBag.descripcion = descripcion;
+            ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+            return View(bicicletadao.ConsultaBicicleta(cod, descripcion));
         }
 
 

@@ -2186,6 +2186,7 @@
     <Content Include="Views\Cliente\Login.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\ListarBicicleta.cshtml" />
+    <Content Include="Views\Home\ConsultarBicicleta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
