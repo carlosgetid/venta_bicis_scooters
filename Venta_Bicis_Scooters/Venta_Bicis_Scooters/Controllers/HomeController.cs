@@ -15,7 +15,7 @@ namespace Venta_Bicis_Scooters.Controllers
         MarcaDao marcadao = new MarcaDao();
         TrabajadorDao trabajadordao = new TrabajadorDao();
         BicicletaCrudDao bicicletadao = new BicicletaCrudDao();
-
+        AccesorioDao accesoriodao = new AccesorioDao();
         /*----------------------------------------------------------------------------------------------------------------*/
 
         //VISTA ADMINISTRADOR
@@ -94,6 +94,27 @@ namespace Venta_Bicis_Scooters.Controllers
             ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
             return View(bicicletadao.ConsultaBicicleta(cod, descripcion));
         }
+
+
+
+        /*---------------------------------------ACCESORIO-------------------------------*/
+        public ActionResult ListarAccesorio()
+        {
+            return View(accesoriodao.ListarAccesorio().ToList());
+        }
+
+
+        public ActionResult ConsultarAccesorio(int cod = 0, string descripcion = null)
+        {
+            if (descripcion == null) descripcion = string.Empty;
+            if (cod == 0) cod = 1;
+            ViewBag.descripcion = descripcion;
+            ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+            return View(accesoriodao.ConsultaAccesorio(cod, descripcion));
+        }
+
+
+
 
 
     }

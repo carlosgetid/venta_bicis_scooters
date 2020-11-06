@@ -95,8 +95,8 @@ cod_marca int not null,
 color_accesorio varchar(200) not null,
 peso_accesorio varchar(200) not null,
 material_accesorio varchar(200) not null,
-duracion_accesorio varchar(200) not null,
-dimension_accesorio varchar(200) not null,
+duracion_accesorio varchar(200)  null,
+dimension_accesorio varchar(200)  null,
 precio_accesorio decimal not null,
 stock_accesorio int not null,
 cod_imagen int
@@ -269,6 +269,8 @@ INSERT TB_MARCA VALUES('Giant')
 INSERT TB_MARCA VALUES('Liv')
 INSERT TB_MARCA VALUES('Felt')
 
+--ACCESORIO
+INSERT TB_MARCA VALUES('CAR-partment')
 
 SELECT * FROM TB_MARCA
 
@@ -298,7 +300,9 @@ select * from TB_SCOOTER
 go
 
 --INSERT ACCESORIO (10 A 15)
+INSERT TB_ACCESORIO VALUES('Lámpara luz frontal 3 LED Ultra brillante',11,'Negro','0.1 KG','PVC','Nuevo',null,55,5,null)
 
+select * from TB_ACCESORIO
 
 --INSERT BICICLETA (10 A 15)
 
@@ -446,4 +450,26 @@ go
 
 
 
+-----------------------------------------------------------------------------
+/*** TABLA ACCESORIO *****/
 
+create proc usp_Accesorio_Listar
+as
+begin
+	select cod_accesorio,descrp_accesorio,m.descrp_marca,color_accesorio,peso_accesorio,material_accesorio,duracion_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio
+	from TB_ACCESORIO a
+	join TB_MARCA m on a.cod_marca=m.cod_marca
+end
+go
+
+create proc usp_Accesorio_Consultar
+@descp_accesorio varchar(350),
+@cod_marca int 
+as
+begin
+	select cod_accesorio,descrp_accesorio,m.descrp_marca,color_accesorio,peso_accesorio,material_accesorio,duracion_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio
+	from TB_ACCESORIO a
+	join TB_MARCA m on a.cod_marca=m.cod_marca
+	where @descp_accesorio= '' or UPPER(descrp_accesorio)=UPPER(@descp_accesorio) and a.cod_marca=@cod_marca 
+end
+go

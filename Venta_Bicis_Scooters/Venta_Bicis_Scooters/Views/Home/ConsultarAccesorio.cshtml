@@ -1,17 +1,18 @@
-﻿@model IEnumerable<Venta_Bicis_Scooters.ENTITY.Scooter>
+﻿@model IEnumerable<Venta_Bicis_Scooters.ENTITY.Accesorio>
+
 @{
-    ViewBag.Title = "ConsultarScooter";
+    ViewBag.Title = "ConsultarAccesorio";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Consultar Scooter</h2>
+<h2>Consultar Accesorio</h2>
 
 @using (Html.BeginForm())
 {
     <table class="table table-bordered ">
         <tr>
             <td>
-                <strong>Ingresar Nombre de Scooter</strong>
+                <strong>Ingresar Nombre de Accesorio</strong>
             </td>
             <td>
                 <input type="text" name="descripcion" id="descripcion" value="@ViewBag.descripcion" />
@@ -37,10 +38,9 @@
     </table>
 }
 
-<br />
+
 
 <div class="table-wrapper-scroll-y my-custom-scrollbar">
-     
     <table class="table table-bordered table-striped mb-0">
         <tr>
             <th class="text-center">
@@ -53,22 +53,19 @@
                 @Html.DisplayNameFor(model => model.Marca)
             </th>
             <th class="text-center">
-                @Html.DisplayNameFor(model => model.Aro)
-            </th>
-            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Color)
             </th>
             <th class="text-center">
-                @Html.DisplayNameFor(model => model.Velocidad)
-            </th>
-            <th class="text-center">
-                @Html.DisplayNameFor(model => model.Motor)
-            </th>
-            <th class="text-center">
-                @Html.DisplayNameFor(model => model.Freno)
+                @Html.DisplayNameFor(model => model.Peso)
             </th>
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.Material)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Duracion)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Dimension)
             </th>
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.Precio)
@@ -77,7 +74,6 @@
                 @Html.DisplayNameFor(model => model.Stock)
             </th>
 
-      
         </tr>
 
         @foreach (var item in Model)
@@ -93,22 +89,19 @@
                     @Html.DisplayFor(modelItem => item.Marca)
                 </td>
                 <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Aro)
-                </td>
-                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Color)
                 </td>
                 <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Velocidad)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Motor)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Freno)
+                    @Html.DisplayFor(modelItem => item.Peso)
                 </td>
                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Material)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Duracion)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Dimension)
                 </td>
                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Precio)
@@ -117,11 +110,13 @@
                     @Html.DisplayFor(modelItem => item.Stock)
                 </td>
 
+
             </tr>
         }
-    </table>
 
+    </table>
 </div>
+
 
 <style>
 
@@ -134,5 +129,4 @@
     .table-wrapper-scroll-y {
         display: block;
     }
-
 </style>
