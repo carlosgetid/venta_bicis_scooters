@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using Venta_Bicis_Scooters.Models;
@@ -13,12 +14,6 @@ namespace Venta_Bicis_Scooters.Controllers
         MarcaDao marcadao = new MarcaDao();
 
 
-
-        public ActionResult Index()
-        {
-            return View();
-        }
-        
         //VISTA ADMINISTRADOR
        public ActionResult PrincipalAdmin()
         {
@@ -26,19 +21,6 @@ namespace Venta_Bicis_Scooters.Controllers
         }
 
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
 
 
 
@@ -49,7 +31,14 @@ namespace Venta_Bicis_Scooters.Controllers
             return View(scooterdao.ListarScooter().ToList());
         }
 
-
+        public ActionResult ConsultarScooter(int cod=0, string descripcion=null)
+        {
+            if (descripcion == null) descripcion = string.Empty;
+            if (cod == 0) cod = 1;
+            ViewBag.descripcion = descripcion;
+            ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+            return View(scooterdao.ConsultaScooter(cod,descripcion));
+        }
 
 
 

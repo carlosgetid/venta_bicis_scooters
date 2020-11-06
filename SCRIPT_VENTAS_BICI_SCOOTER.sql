@@ -379,6 +379,20 @@ end
 go
 
 
+create proc usp_Scooter_Consultar
+@descp_scooter varchar(350),
+@cod_marca int 
+as
+begin
+	select cod_scooter,descrp_scooter,m.descrp_marca,aro_scooter,color_scooter,velocidad_scooter,motor_scooter,freno_scooter,material_scooter,precio_scooter,stock_scooter
+	from TB_SCOOTER s 
+	join TB_MARCA m on s.cod_marca=m.cod_marca
+	where @descp_scooter='' or  UPPER(descrp_scooter)=UPPER(@descp_scooter) and s.cod_marca=@cod_marca 
+end
+go
+
+
+
 create proc usp_Marca_Listar
 as
 begin

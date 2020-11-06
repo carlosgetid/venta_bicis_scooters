@@ -15,5 +15,6 @@ namespace Venta_Bicis_Scooters.SERVICE
 
 
         List<T> ListarScooter();
+        List<T> ConsultaScooter(int cod, string descripcion);
     }
 }
