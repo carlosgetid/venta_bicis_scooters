@@ -1,18 +1,18 @@
-﻿@model IEnumerable<Venta_Bicis_Scooters.ENTITY.Scooter>
+﻿@model IEnumerable<Venta_Bicis_Scooters.ENTITY.Bicicleta>
 
 @{
-    ViewBag.Title = "ListarScooter";
+    ViewBag.Title = "ListarBicicleta";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Listado de Scooter</h2>
+<h2>Listado de Bicicleta</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 
 <div class="table-wrapper-scroll-y my-custom-scrollbar">
-    <table class="table  table-bordered ">
+    <table class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.ID)
@@ -30,16 +30,10 @@
                 @Html.DisplayNameFor(model => model.Color)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Velocidad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Motor)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Freno)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Material)
+                @Html.DisplayNameFor(model => model.Peso)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Precio)
@@ -47,7 +41,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Stock)
             </th>
-
+          
             <th></th>
         </tr>
 
@@ -70,16 +64,10 @@
                     @Html.DisplayFor(modelItem => item.Color)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Velocidad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Motor)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Freno)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Material)
+                    @Html.DisplayFor(modelItem => item.Peso)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Precio)
@@ -87,11 +75,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Stock)
                 </td>
-
+              
                 <td>
-                    @Html.ActionLink("Editar", "ActualizarScooter", "Home", new { id = item.ID }) |
-                    @Html.ActionLink("Ver producto", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
                 </td>
             </tr>
         }

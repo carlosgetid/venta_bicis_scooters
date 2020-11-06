@@ -1,22 +1,49 @@
-﻿@model IEnumerable<Venta_Bicis_Scooters.ENTITY.Scooter>
+﻿@model IEnumerable<Venta_Bicis_Scooters.ENTITY.Bicicleta>
 
 @{
-    ViewBag.Title = "ListarScooter";
+    ViewBag.Title = "ConsultarBicicleta";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Listado de Scooter</h2>
+<h2>Consultar Bicicleta</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+@using (Html.BeginForm())
+{
+    <table class="table table-bordered ">
+        <tr>
+            <td>
+                <strong>Ingresar Nombre de Bicicleta</strong>
+            </td>
+            <td>
+                <input type="text" name="descripcion" id="descripcion" value="@ViewBag.descripcion" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <strong>Seleccionar Marca a consultar</strong>
+            </td>
+            <td>
+                @Html.DropDownList("cod", (SelectList)ViewBag.marca, new { @class = "form-control" })
+
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="Consultar" class="btn btn-success" />
+            </td>
+        </tr>
+
+    </table>
+}
+
+<br />
 
 <div class="table-wrapper-scroll-y my-custom-scrollbar">
-    <table class="table  table-bordered ">
+    <table class="table table-bordered">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ID)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Descripcion)
             </th>
@@ -30,16 +57,10 @@
                 @Html.DisplayNameFor(model => model.Color)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Velocidad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Motor)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Freno)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Material)
+                @Html.DisplayNameFor(model => model.Peso)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Precio)
@@ -47,16 +68,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.Stock)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.codMarca)
+            </th>
 
-            <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ID)
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Descripcion)
                 </td>
@@ -70,16 +90,10 @@
                     @Html.DisplayFor(modelItem => item.Color)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Velocidad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Motor)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Freno)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Material)
+                    @Html.DisplayFor(modelItem => item.Peso)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Precio)
@@ -87,12 +101,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Stock)
                 </td>
-
                 <td>
-                    @Html.ActionLink("Editar", "ActualizarScooter", "Home", new { id = item.ID }) |
-                    @Html.ActionLink("Ver producto", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
+                    @Html.DisplayFor(modelItem => item.codMarca)
                 </td>
+
             </tr>
         }
 
@@ -104,7 +116,7 @@
 
     .my-custom-scrollbar {
         position: relative;
-        height: 600px;
+        height: 500px;
         overflow: auto;
     }
 

@@ -297,12 +297,43 @@ INSERT TB_SCOOTER VALUES('Scooter Electrico Silver N2',5,'Llantas de 8.5 tubeles
 select * from TB_SCOOTER
 go
 
+
+
 --INSERT ACCESORIO (10 A 15)
 
 
 --INSERT BICICLETA (10 A 15)
 
+<<<<<<< HEAD
+INSERT TB_SCOOTER VALUES('Bicicleta Mirage',1,'24','Negro','V Brake','16 kg',849,2,null)
+
+INSERT TB_SCOOTER VALUES('Bicicleta Tricicargo Crosstown',1,'26','Negro','V Brake delantero y tambor posterior','20 kg',1699,2,null)
+
+INSERT TB_SCOOTER VALUES('Bicicleta Delta ADV',2,'26','Negro Verde','Disco Delantero y V Brake Trasero','16 kg',549,2,null)
+
+INSERT TB_SCOOTER VALUES('Bicicleta Master Bike',2,'26','Negro Verde','V Brake','18 kg',459,2,null)
+
+INSERT TB_SCOOTER VALUES('Bicicleta XTC JR',3,'20','Metallic Blue','Alloy Linear Pull','18 kg',1199,2,null)
+
+INSERT TB_SCOOTER VALUES('Bicicleta 2020 Suede 2',3,'26','Azul','Aluminio Direct Pull','18 kg',1899,2,null)
+
+INSERT TB_SCOOTER VALUES('Bicicleta Enchant',4,'20','Azul','Alloy Linear Pull','17 kg',1099,2,null)
+
+INSERT TB_SCOOTER VALUES('Bicicleta TEMPT 3',4,'27.5','Negro','SHIMANO M315','19 kg',2799,2,null)
+
+INSERT TB_SCOOTER VALUES('Bicicleta Fr Advanced Ultegra Plasma Red',5,'24','Rojo','Disco hidráulico Shimano BR8070','10 kg',2500,2,null)
+
+INSERT TB_SCOOTER VALUES('Bicicleta Fr Advanced Ultegra Aquafresh',5,'24','Oceano','Disco hidráulico Shimano BR8070','10 kg',2500,2,null)	
+
+=======
+INSERT TB_BICICLETA VALUES('Bicicleta Montañera Monark Dakar Thypoon',6,'Aro 24','Gris','V-Brake Delantero y posterior','16 kg',729,2,null)
+
+
+select * from TB_BICICLETA
+>>>>>>> e52f090e7a37b16547996f8b327e3ad44bf9956c
+
 --INSERT TRABAJADOR (1 a 4)
+
 insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Carlos', 'Gomez', '87654321', 'carlos@gmail.com', '987654321', 't20201', '123');
 insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Pablo', 'Saravia', '82654322', 'pablo@gmail.com', '985644322', 't20202', '123');
 insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Eduardo', 'Cordoba', '87558393', 'eduardo@gmail.com', '985423433', 't20203', '123');
@@ -399,7 +430,6 @@ end
 go
 
 
-
 -----------------------------------------------------------------------------
 /*** TABLA TRABAJADOR *****/
 
@@ -408,8 +438,37 @@ create proc usp_Trabajador_Buscar
 @password varchar(20)
 as
 begin
-	select nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, password_trabajador
+	select nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador,username_trabajador, password_trabajador
 	from TB_TRABAJADOR
 	where username_trabajador = @username and password_trabajador = @password
 end
 go
+
+-----------------------------------------------------------------------------
+/*** TABLA BICICLETA *****/
+
+create proc usp_Bicicleta_Listar
+as
+begin
+	select cod_bicicleta,descrp_bicicleta,m.descrp_marca,aro_bicicleta,color_bicicleta,freno_bicicleta,peso_bicicleta,precio_bicicleta,stock_bicicleta
+	from TB_BICICLETA B
+	join TB_MARCA m on B.cod_marca=m.cod_marca
+end
+go
+
+
+create proc usp_Bicicleta_Consultar
+@descp_bicicleta varchar(350),
+@cod_marca int 
+as
+begin
+	select cod_bicicleta,descrp_bicicleta,m.descrp_marca,aro_bicicleta,color_bicicleta,freno_bicicleta,peso_bicicleta,precio_bicicleta,stock_bicicleta
+	from TB_BICICLETA B
+	join TB_MARCA m on B.cod_marca=m.cod_marca
+	where @descp_bicicleta= '' or UPPER(descrp_bicicleta)=UPPER(@descp_bicicleta) and B.cod_marca=@cod_marca 
+end
+go
+
+
+
+
