@@ -6,4 +6,5 @@ Proyecto de Cibertec - Desarrollo de Servicios Web
 (colocar sus nombres)
 - Carlos Gómez 
 - Flavio Cordova 
+- Brandon Armijo
 
