@@ -302,7 +302,13 @@ go
 
 --INSERT BICICLETA (10 A 15)
 
+INSERT TB_BICICLETA VALUES('Bicicleta Montañera Monark Dakar Thypoon',6,'Aro 24','Gris','V-Brake Delantero y posterior','16 kg',729,2,null)
+
+
+select * from TB_BICICLETA
+
 --INSERT TRABAJADOR (1 a 4)
+
 insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Carlos', 'Gomez', '87654321', 'carlos@gmail.com', '987654321', 't20201', '123');
 insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Pablo', 'Saravia', '82654322', 'pablo@gmail.com', '985644322', 't20202', '123');
 insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Eduardo', 'Cordoba', '87558393', 'eduardo@gmail.com', '985423433', 't20203', '123');
