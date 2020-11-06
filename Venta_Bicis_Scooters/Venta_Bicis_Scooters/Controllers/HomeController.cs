@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
+using Venta_Bicis_Scooters.Models;
 
 namespace Venta_Bicis_Scooters.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
-        
+        ScooterCrudDao scooterdao = new ScooterCrudDao();
+        MarcaDao marcadao = new MarcaDao();
+
+
         //VISTA ADMINISTRADOR
        public ActionResult PrincipalAdmin()
         {
@@ -20,18 +21,27 @@ namespace Venta_Bicis_Scooters.Controllers
         }
 
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
+
+
+        /*---------------------------------------SCOOTER-------------------------------*/
+
+        public ActionResult ListarScooter()
+        {
+            return View(scooterdao.ListarScooter().ToList());
         }
 
-        public ActionResult Contact()
+        public ActionResult ConsultarScooter(int cod=0, string descripcion=null)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            if (descripcion == null) descripcion = string.Empty;
+            if (cod == 0) cod = 1;
+            ViewBag.descripcion = descripcion;
+            ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+            return View(scooterdao.ConsultaScooter(cod,descripcion));
         }
+
+
+
+
     }
 }
