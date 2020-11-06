@@ -12,12 +12,22 @@ namespace Venta_Bicis_Scooters.Controllers
     {
         ScooterCrudDao scooterdao = new ScooterCrudDao();
         MarcaDao marcadao = new MarcaDao();
+        TrabajadorDao trabajadordao = new TrabajadorDao();
 
 
         //VISTA ADMINISTRADOR
-       public ActionResult PrincipalAdmin()
+       public ActionResult PrincipalAdmin(string user, string pass)
         {
-            return View();
+            ViewBag.user = user;
+            ViewBag.pass = pass;
+            int salida = trabajadordao.BuscarTrabajador(user, pass);
+            if (salida == 1)
+                return View();
+            else
+            {
+                TempData["Error"] = "Usuario y/o contraseña incorrecta";
+                return RedirectToAction("Login");
+            }
         }
 
 
@@ -45,8 +55,7 @@ namespace Venta_Bicis_Scooters.Controllers
             return View(scooterdao.ConsultaScooter(cod,descripcion));
         }
 
-
-
+        
 
     }
 }
