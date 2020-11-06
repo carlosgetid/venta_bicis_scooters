@@ -13,17 +13,10 @@ namespace Venta_Bicis_Scooters.Controllers
     {
         ScooterCrudDao scooterdao = new ScooterCrudDao();
         MarcaDao marcadao = new MarcaDao();
-<<<<<<< HEAD
+        TrabajadorDao trabajadordao = new TrabajadorDao();
         BicicletaCrudDao bicicletadao = new BicicletaCrudDao();
 
-        //VISTA ADMINISTRADOR
-       public ActionResult PrincipalAdmin()
-        {
-           
-                return View();
-          
-=======
-        TrabajadorDao trabajadordao = new TrabajadorDao();
+
 
         //VISTA ADMINISTRADOR
         public ActionResult PrincipalAdmin()
@@ -38,7 +31,6 @@ namespace Venta_Bicis_Scooters.Controllers
             {
                 return RedirectToAction("Login");
             }
->>>>>>> 3e99b5e448560e43b169309fe9c8b130a0277bf9
         }
 
 
