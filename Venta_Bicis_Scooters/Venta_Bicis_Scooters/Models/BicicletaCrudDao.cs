@@ -19,7 +19,44 @@ namespace Venta_Bicis_Scooters.Models
 
         public List<Bicicleta> ConsultaBicicleta(int cod, string descripcion)
         {
-            throw new NotImplementedException();
+            List<Bicicleta> lista = new List<Bicicleta>();
+
+            try
+            {
+                SqlConnection cn = AccesoDato.getConnection();
+                SqlCommand cmd = new SqlCommand("usp_Bicicleta_Consultar", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@cod_marca", cod);
+                cmd.Parameters.AddWithValue("@descp_bicicleta", descripcion);
+
+
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Bicicleta emp = new Bicicleta()
+                    {
+                        ID = Convert.ToInt32(dr["cod_bicicleta"]),
+                        Descripcion = dr["descrp_bicicleta"].ToString(),
+                        Marca = dr["descrp_marca"].ToString(),
+                        Aro = dr["aro_bicicleta"].ToString(),
+                        Color = dr["color_bicicleta"].ToString(),
+                        Freno = dr["freno_bicicleta"].ToString(),
+                        Peso = dr["peso_bicicleta"].ToString(),
+                        Precio = Convert.ToDouble(dr["precio_bicicleta"]),
+                        Stock = Convert.ToInt32(dr["stock_bicicleta"])
+
+                    };
+                    lista.Add(emp);
+                }
+                dr.Close();
+                cn.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            return lista;
         }
 
         public void DeleteBicicleta(Bicicleta e)
