@@ -15,13 +15,14 @@ namespace Venta_Bicis_Scooters.Controllers
         MarcaDao marcadao = new MarcaDao();
         TrabajadorDao trabajadordao = new TrabajadorDao();
 
-
         //VISTA ADMINISTRADOR
-        public ActionResult PrincipalAdmin(Trabajador t)
+        public ActionResult PrincipalAdmin()
         {
             if(Session["User"] != null)
             {
-                return View(t);
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View();
             }
             else
             {
@@ -42,7 +43,9 @@ namespace Venta_Bicis_Scooters.Controllers
             if (t != null)
             {
                 Session["User"] = t.UsernameTrabajador.ToString();
-                return RedirectToAction("PrincipalAdmin", "Home", t);
+                Session["FirstName"] = t.Nombre.ToString();
+                Session["LastName"] = t.Apellido.ToString();
+                return RedirectToAction("PrincipalAdmin", "Home");
             }
             else
             {
