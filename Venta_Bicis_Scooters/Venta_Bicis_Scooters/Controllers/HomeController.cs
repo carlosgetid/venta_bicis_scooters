@@ -63,7 +63,16 @@ namespace Venta_Bicis_Scooters.Controllers
 
         public ActionResult ListarScooter()
         {
-            return View(scooterdao.ListarScooter().ToList());
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View(scooterdao.ListarScooter().ToList());
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         public ActionResult ConsultarScooter(int cod=0, string descripcion=null)
