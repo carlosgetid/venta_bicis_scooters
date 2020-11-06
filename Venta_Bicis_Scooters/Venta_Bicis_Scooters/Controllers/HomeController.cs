@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
+using Venta_Bicis_Scooters.ENTITY;
 using Venta_Bicis_Scooters.Models;
 
 namespace Venta_Bicis_Scooters.Controllers
@@ -16,16 +17,14 @@ namespace Venta_Bicis_Scooters.Controllers
 
 
         //VISTA ADMINISTRADOR
-       public ActionResult PrincipalAdmin(string user, string pass)
+        public ActionResult PrincipalAdmin(Trabajador t)
         {
-            ViewBag.user = user;
-            ViewBag.pass = pass;
-            int salida = trabajadordao.BuscarTrabajador(user, pass);
-            if (salida == 1)
-                return View();
+            if(Session["User"] != null)
+            {
+                return View(t);
+            }
             else
             {
-                TempData["Error"] = "Usuario y/o contraseña incorrecta";
                 return RedirectToAction("Login");
             }
         }
@@ -35,6 +34,21 @@ namespace Venta_Bicis_Scooters.Controllers
         public ActionResult Login()
         {
             return View();
+        }
+
+        public ActionResult IniciarSesion(string user, string pass)
+        {
+            Trabajador t = trabajadordao.BuscarTrabajador(user, pass);
+            if (t != null)
+            {
+                Session["User"] = t.UsernameTrabajador.ToString();
+                return RedirectToAction("PrincipalAdmin", "Home", t);
+            }
+            else
+            {
+                TempData["Error"] = "Usuario y/o contraseña incorrecta";
+                return RedirectToAction("Login");
+            }
         }
 
 

@@ -13,10 +13,9 @@ namespace Venta_Bicis_Scooters.Models
 {
     public class TrabajadorDao : ITrabajadorDao<Trabajador>
     {
-        public int BuscarTrabajador(string user, string pass)
+        public Trabajador BuscarTrabajador(string user, string pass)
         {
-            int salida = -1;
-            Trabajador trabajador;
+            Trabajador trabajador = null;
 
             SqlConnection cn = AccesoDato.getConnection();
             SqlCommand cmd = new SqlCommand("usp_Trabajador_Buscar", cn);
@@ -37,9 +36,9 @@ namespace Venta_Bicis_Scooters.Models
                         DNI = dr[2].ToString(),
                         Correo = dr[3].ToString(),
                         Celular = dr[4].ToString(),
-                        PasswordTrabajador = dr[5].ToString()
+                        UsernameTrabajador = dr[5].ToString(),
+                        PasswordTrabajador = dr[6].ToString()
                     };
-                    salida = 1;
                 }
                 dr.Close();
                 cn.Close();
@@ -48,7 +47,7 @@ namespace Venta_Bicis_Scooters.Models
             {
                 throw ex;
             }
-            return salida;
+            return trabajador;
         }
 
         public int UpdateTrabajador(Trabajador t)

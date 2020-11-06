@@ -403,12 +403,12 @@ go
 -----------------------------------------------------------------------------
 /*** TABLA TRABAJADOR *****/
 
-create proc usp_Trabajador_Buscar
+create or alter proc usp_Trabajador_Buscar
 @username varchar(20),
 @password varchar(20)
 as
 begin
-	select nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, password_trabajador
+	select nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador
 	from TB_TRABAJADOR
 	where username_trabajador = @username and password_trabajador = @password
 end
