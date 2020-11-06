@@ -25,6 +25,9 @@ GO
 
 CREATE TABLE TB_DIRECCION(
 cod_direccion int IDENTITY(1,1) PRIMARY KEY not null ,
+descrip_direccion varchar(250) not null,
+cod_cliente int null,
+cod_trabajador int null,
 cod_departamento varchar(2) not null,
 cod_provincia varchar(2) not null,
 cod_distrito varchar(2) not null,
@@ -38,9 +41,8 @@ ape_trabajador varchar(200) not null,
 dni_trabajador char(8) not null,
 correo_trabajador varchar(250) not null,
 cel_trabajador char(9) not null,
-cod_direccion int not null,
-username_trabajador varchar(10) not null,
-paswoord_trabajador varchar(10) not null
+username_trabajador varchar(20) null, 
+password_trabajador varchar(20) not null
 )
 GO
 
@@ -49,11 +51,10 @@ cod_cliente int IDENTITY(1,1) primary key not null,
 nom_cliente varchar(200) not null,
 ape_cliente varchar(200) not null,
 dni_cliente char(8) not null,
-correo_cliente varchar(250) not null,
+correo_cliente varchar(250) not null, /*funcionara como username */
 cel_cliente char(9) not null,
-cod_direccion int not null,
-username_cliente varchar(10) not null,
-paswoord_cliente varchar(10) not null
+password_cliente varchar(20) not null,
+estado_cliente bit not null
 )
 GO
 
@@ -172,12 +173,18 @@ GO
 ALTER TABLE TB_DIRECCION
 ADD CONSTRAINT FK_DIRECCION_UBIGEO FOREIGN KEY (cod_direccion) REFERENCES TB_UBIGEO(cod_ubigeo)
 
+ALTER TABLE TB_DIRECCION
+ADD CONSTRAINT FK_DIRECCION_CLIENTE FOREIGN KEY (cod_cliente) REFERENCES TB_CLIENTE(cod_cliente)
+
+ALTER TABLE TB_DIRECCION
+ADD CONSTRAINT FK_DIRECCION_TRABAJADOR FOREIGN KEY (cod_trabajador) REFERENCES TB_TRABAJADOR(cod_trabajador)
+/*
 ALTER TABLE TB_TRABAJADOR
 ADD CONSTRAINT FK_TRABAJADOR_DIRECCION FOREIGN KEY (cod_direccion) REFERENCES TB_DIRECCION(cod_direccion)
 
 ALTER TABLE TB_CLIENTE
 ADD CONSTRAINT FK_CLIENTE_DIRECCION FOREIGN KEY (cod_direccion) REFERENCES TB_DIRECCION(cod_direccion)
-
+*/
 ALTER TABLE TB_SCOOTER
 ADD CONSTRAINT FK_SCOOTER_MARCA FOREIGN KEY (cod_marca) REFERENCES TB_MARCA(cod_marca)
 
@@ -228,6 +235,8 @@ ADD CONSTRAINT FK_DETALLE_PEDIDO_ACCESORIO FOREIGN KEY (nro_pedido) REFERENCES T
 ALTER TABLE TB_DETALLE_PEDIDO_BICICLETA
 ADD CONSTRAINT FK_DETALLE_PEDIDO_BICICLETA FOREIGN KEY (nro_pedido) REFERENCES TB_PEDIDO(nro_pedido)
 
+
+
 ----------------------------------------------------------------------------------------------------------------------------------------
 					/*INSERTANDO REGISTROS NECESARIO*/
 
@@ -265,19 +274,6 @@ SELECT * FROM TB_MARCA
 
 --INSERT SCOOTER (10 A 15)
 
-/* cod_scooter int IDENTITY(1,1) primary key not null,
-descrp_scooter varchar(350) not null,
-cod_marca int not null,
-aro_scooter varchar(200) not null,
-color_scooter varchar(200) not null,
-velocidad_scooter varchar(200) not null,
-motor_scooter varchar(200) not null,
-freno_scooter varchar(200) not null,
-material_scooter varchar(200) not null,
-precio_scooter decimal not null,
-stock_scooter int not null,
-cod_imagen int */
-
 INSERT TB_SCOOTER VALUES('Scooter Eléctrico XIAOMI M365 PRO',1,'Neumaticos de 8.5 pulgadas inflables','Negro','25 km/h','Brushless 300W','De disco ventilado trasero de 120 mm y un sistema de frenos antibloqueo regenerativo E-ABS delantero','Aleación de aluminio',1899,5,null)
 
 INSERT TB_SCOOTER VALUES('Scooter electrico Xiaomi M365',1,'Neumaticos de 8.5 pulgadas inflables','Negro','25 km/h','Brushless 250W','Sistema de frenado de disco y un sistema de frenado antibloqueo regenerativo eABS','Aleación de aluminio',1399,2,null)
@@ -299,12 +295,17 @@ INSERT TB_SCOOTER VALUES('Scooter eléctrico N4',5,'Neumático delantero de 8 pulg
 INSERT TB_SCOOTER VALUES('Scooter Electrico Silver N2',5,'Llantas de 8.5 tubeless','Gris','25 km/h','Brushless 250W','Delantero','Aleación de aluminio',1099,2,null)
 
 select * from TB_SCOOTER
+go
 
 --INSERT ACCESORIO (10 A 15)
 
 
 --INSERT BICICLETA (10 A 15)
 
+--INSERT TRABAJADOR (1 a 4)
+insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Carlos', 'Gomez', '87654321', 'carlos@gmail.com', '987654321', 't20201', '123');
+insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Pablo', 'Saravia', '82654322', 'pablo@gmail.com', '985644322', 't20202', '123');
+insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Eduardo', 'Cordoba', '87558393', 'eduardo@gmail.com', '985423433', 't20203', '123');
 
 --GENERAR PEDIDO (2 A 5 )
 
@@ -313,4 +314,102 @@ select * from TB_SCOOTER
 /*CADA INSERCION TIENE QUE ESTAR BIEN REALIZADA*/
 
 
-select * from dbo.TB_UBIGEO
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+														/*GENERAR SP*/
+
+/*** TABLA CLIENTE *****/
+
+update dbo.TB_CLIENTE set estado_cliente=1
+go
+
+
+create proc usp_Cliente_Buscar
+@correo varchar(250),@password_cliente varchar(10)
+as
+begin
+	select correo_cliente,password_cliente,nom_cliente,ape_cliente 
+	from TB_CLIENTE 
+	where correo_cliente=@correo and password_cliente=@password_cliente
+end 
+go
+
+
+create proc usp_Cliente_Insertar
+@nom_cliente varchar(200),@ape_cliente varchar(200),@dni_cliente char(8),@correo_cliente varchar(250),@cel_cliente char(9),@password_cliente varchar(10)
+as
+begin
+	insert dbo.TB_CLIENTE(nom_cliente,ape_cliente,dni_cliente,correo_cliente,cel_cliente,password_cliente,estado_cliente)
+	Values(@nom_cliente,@ape_cliente,@dni_cliente,@correo_cliente,@cel_cliente,@password_cliente,1)
+end 
+go
+
+
+create proc usp_Cliente_Actualizar
+@cod_cliente int,@nom_cliente varchar(200),@ape_cliente varchar(200),@dni_cliente char(8),@correo_cliente varchar(250),@cel_cliente char(9),@username_cliente varchar(10),@password_cliente varchar(10)
+as
+begin	
+	update dbo.TB_CLIENTE 
+	set nom_cliente=@nom_cliente,
+		ape_cliente=@ape_cliente,
+		dni_cliente=@dni_cliente,
+		correo_cliente=@correo_cliente,
+		cel_cliente=@cel_cliente,
+		password_cliente=@password_cliente
+	where cod_cliente=@cod_cliente
+end 
+go
+
+
+-----------------------------------------------------------------------------
+/*** TABLA SCOOTER *****/
+
+create proc usp_Scooter_Listar
+as
+begin
+	select cod_scooter,descrp_scooter,s.cod_marca,m.descrp_marca,aro_scooter,color_scooter,velocidad_scooter,motor_scooter,freno_scooter,material_scooter,precio_scooter,stock_scooter
+	from TB_SCOOTER s 
+	join TB_MARCA m on s.cod_marca=m.cod_marca
+end
+go
+
+
+create proc usp_Scooter_Consultar
+@descp_scooter varchar(350),
+@cod_marca int 
+as
+begin
+	select cod_scooter,descrp_scooter,m.descrp_marca,aro_scooter,color_scooter,velocidad_scooter,motor_scooter,freno_scooter,material_scooter,precio_scooter,stock_scooter
+	from TB_SCOOTER s 
+	join TB_MARCA m on s.cod_marca=m.cod_marca
+	where @descp_scooter='' or  UPPER(descrp_scooter)=UPPER(@descp_scooter) and s.cod_marca=@cod_marca 
+end
+go
+
+
+
+create proc usp_Marca_Listar
+as
+begin
+	select cod_marca,descrp_marca
+	from TB_MARCA 
+end
+go
+
+
+
+-----------------------------------------------------------------------------
+/*** TABLA TRABAJADOR *****/
+
+create proc usp_Trabajador_Buscar
+@username varchar(20),
+@password varchar(20)
+as
+begin
+	select nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, password_trabajador
+	from TB_TRABAJADOR
+	where username_trabajador = @username and password_trabajador = @password
+end
+go

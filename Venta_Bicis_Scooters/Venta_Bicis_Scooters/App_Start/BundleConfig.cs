@@ -20,11 +20,16 @@ namespace Venta_Bicis_Scooters
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/cccliente/estiloCarouselAbajo.css",
+                      "~/Content/cccliente/estilo.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/carruseles").Include(
+                      "~/Scripts/caruselAbajo.js"));
         }
     }
 }
