@@ -140,6 +140,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ClienteCrudDao.cs" />
+    <Compile Include="Models\Login.cs" />
     <Compile Include="Models\MarcaDao.cs" />
     <Compile Include="Models\ScooterCrudDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
