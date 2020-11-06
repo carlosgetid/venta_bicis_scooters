@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
+using Venta_Bicis_Scooters.ENTITY;
 using Venta_Bicis_Scooters.Models;
 
 namespace Venta_Bicis_Scooters.Controllers
@@ -12,6 +13,7 @@ namespace Venta_Bicis_Scooters.Controllers
     {
         ScooterCrudDao scooterdao = new ScooterCrudDao();
         MarcaDao marcadao = new MarcaDao();
+<<<<<<< HEAD
         BicicletaCrudDao bicicletadao = new BicicletaCrudDao();
 
         //VISTA ADMINISTRADOR
@@ -20,6 +22,23 @@ namespace Venta_Bicis_Scooters.Controllers
            
                 return View();
           
+=======
+        TrabajadorDao trabajadordao = new TrabajadorDao();
+
+        //VISTA ADMINISTRADOR
+        public ActionResult PrincipalAdmin()
+        {
+            if(Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+>>>>>>> 3e99b5e448560e43b169309fe9c8b130a0277bf9
         }
 
 
@@ -27,6 +46,23 @@ namespace Venta_Bicis_Scooters.Controllers
         public ActionResult Login()
         {
             return View();
+        }
+
+        public ActionResult IniciarSesion(string user, string pass)
+        {
+            Trabajador t = trabajadordao.BuscarTrabajador(user, pass);
+            if (t != null)
+            {
+                Session["User"] = t.UsernameTrabajador.ToString();
+                Session["FirstName"] = t.Nombre.ToString();
+                Session["LastName"] = t.Apellido.ToString();
+                return RedirectToAction("PrincipalAdmin", "Home");
+            }
+            else
+            {
+                TempData["Error"] = "Usuario y/o contraseña incorrecta";
+                return RedirectToAction("Login");
+            }
         }
 
 

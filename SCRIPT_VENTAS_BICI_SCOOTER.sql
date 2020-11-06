@@ -419,3 +419,14 @@ begin
 end
 go
 
+-----------------------------------------------------------------------------
+/*** TABLA BICICLETA *****/
+
+create proc usp_Bicicleta_Listar
+as
+begin
+	select cod_bicicleta,descrp_bicicleta,m.descrp_marca,aro_bicicleta,color_bicicleta,freno_bicicleta,peso_bicicleta,precio_bicicleta,stock_bicicleta
+	from TB_BICICLETA B
+	join TB_MARCA m on B.cod_marca=m.cod_marca
+end
+go

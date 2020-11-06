@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
-@using(Html.BeginForm("PrincipalAdmin", "Home"))
+@using(Html.BeginForm("IniciarSesion", "Home"))
 {
 
 <div class="form-36-mian section-gap">
@@ -20,12 +20,12 @@
 
             <div class="form-input">
                 <span class="fa fa-envelope-o" aria-hidden="true"></span>
-                <input type="text" value="@ViewBag.user" name="user" placeholder="Username" required />
+                <input type="text" name="user" placeholder="Username" required />
             </div>
 
             <div class="form-input">
                 <span class="fa fa-key" aria-hidden="true"></span>
-                <input type="password" value="@ViewBag.pass" name="pass" placeholder="Password" required />
+                <input type="password" name="pass" placeholder="Password" required />
             </div>
             @{
                 if (@TempData["Error"] != null)
@@ -39,7 +39,7 @@
                     <span class="checkmark"></span>
                     <p class="remember">Recuérdame</p>
                 </label>
-                <button class="btn theme-button" value="PrincipalAdmin">Login</button>
+                <button class="btn theme-button" value="IniciarSesion">Login</button>
             </div>
 
             <div class="new-signup">

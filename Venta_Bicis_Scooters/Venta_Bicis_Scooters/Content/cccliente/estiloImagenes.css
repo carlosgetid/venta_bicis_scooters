@@ -24,7 +24,7 @@
 
 #izquierdo {
     float: left;
-    margin-left:12%;
+    margin-left: 12%;
 }
 
 #centrado {
@@ -35,5 +35,4 @@
 #derecho {
     float: right;
     margin-right: 10%;
-
 }
