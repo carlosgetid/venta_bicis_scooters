@@ -41,7 +41,6 @@ ape_trabajador varchar(200) not null,
 dni_trabajador char(8) not null,
 correo_trabajador varchar(250) not null,
 cel_trabajador char(9) not null,
-cod_direccion int not null,
 username_trabajador varchar(20) null, 
 password_trabajador varchar(20) not null
 )
@@ -54,7 +53,6 @@ ape_cliente varchar(200) not null,
 dni_cliente char(8) not null,
 correo_cliente varchar(250) not null, /*funcionara como username */
 cel_cliente char(9) not null,
-cod_direccion int not null,
 password_cliente varchar(20) not null,
 estado_cliente bit not null
 )
@@ -180,13 +178,13 @@ ADD CONSTRAINT FK_DIRECCION_CLIENTE FOREIGN KEY (cod_cliente) REFERENCES TB_CLIE
 
 ALTER TABLE TB_DIRECCION
 ADD CONSTRAINT FK_DIRECCION_TRABAJADOR FOREIGN KEY (cod_trabajador) REFERENCES TB_TRABAJADOR(cod_trabajador)
-
+/*
 ALTER TABLE TB_TRABAJADOR
 ADD CONSTRAINT FK_TRABAJADOR_DIRECCION FOREIGN KEY (cod_direccion) REFERENCES TB_DIRECCION(cod_direccion)
 
 ALTER TABLE TB_CLIENTE
 ADD CONSTRAINT FK_CLIENTE_DIRECCION FOREIGN KEY (cod_direccion) REFERENCES TB_DIRECCION(cod_direccion)
-
+*/
 ALTER TABLE TB_SCOOTER
 ADD CONSTRAINT FK_SCOOTER_MARCA FOREIGN KEY (cod_marca) REFERENCES TB_MARCA(cod_marca)
 
@@ -304,6 +302,10 @@ go
 
 --INSERT BICICLETA (10 A 15)
 
+--INSERT TRABAJADOR (1 a 4)
+insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Carlos', 'Gomez', '87654321', 'carlos@gmail.com', '987654321', 't20201', '123');
+insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Pablo', 'Saravia', '82654322', 'pablo@gmail.com', '985644322', 't20202', '123');
+insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Eduardo', 'Cordoba', '87558393', 'eduardo@gmail.com', '985423433', 't20203', '123');
 
 --GENERAR PEDIDO (2 A 5 )
 
@@ -336,19 +338,17 @@ go
 
 
 create proc usp_Cliente_Insertar
-@nom_cliente varchar(200),@ape_cliente varchar(200),@dni_cliente char(8),@correo_cliente varchar(250),@cel_cliente char(9),
-@cod_direccion int,@password_cliente varchar(10)
+@nom_cliente varchar(200),@ape_cliente varchar(200),@dni_cliente char(8),@correo_cliente varchar(250),@cel_cliente char(9),@password_cliente varchar(10)
 as
 begin
-	insert dbo.TB_CLIENTE(nom_cliente,ape_cliente,dni_cliente,correo_cliente,cel_cliente,cod_direccion,password_cliente,estado_cliente)
-	Values(@nom_cliente,@ape_cliente,@dni_cliente,@correo_cliente,@cel_cliente,@cod_direccion,@password_cliente,1)
+	insert dbo.TB_CLIENTE(nom_cliente,ape_cliente,dni_cliente,correo_cliente,cel_cliente,password_cliente,estado_cliente)
+	Values(@nom_cliente,@ape_cliente,@dni_cliente,@correo_cliente,@cel_cliente,@password_cliente,1)
 end 
 go
 
 
 create proc usp_Cliente_Actualizar
-@cod_cliente int,@nom_cliente varchar(200),@ape_cliente varchar(200),@dni_cliente char(8),@correo_cliente varchar(250),@cel_cliente char(9),
-@cod_direccion int,@username_cliente varchar(10),@password_cliente varchar(10)
+@cod_cliente int,@nom_cliente varchar(200),@ape_cliente varchar(200),@dni_cliente char(8),@correo_cliente varchar(250),@cel_cliente char(9),@username_cliente varchar(10),@password_cliente varchar(10)
 as
 begin	
 	update dbo.TB_CLIENTE 
@@ -357,7 +357,6 @@ begin
 		dni_cliente=@dni_cliente,
 		correo_cliente=@correo_cliente,
 		cel_cliente=@cel_cliente,
-	    cod_direccion=@cod_direccion,
 		password_cliente=@password_cliente
 	where cod_cliente=@cod_cliente
 end 
@@ -405,14 +404,12 @@ go
 /*** TABLA TRABAJADOR *****/
 
 create proc usp_Trabajador_Buscar
-@correo
+@username varchar(20),
+@password varchar(20)
 as
 begin
-	select 
+	select nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, password_trabajador
 	from TB_TRABAJADOR
-	where 
+	where username_trabajador = @username and password_trabajador = @password
 end
 go
-
-
-exec sp_help TB_TRABAJADOR

@@ -12,12 +12,19 @@ namespace Venta_Bicis_Scooters.Controllers
     {
         ScooterCrudDao scooterdao = new ScooterCrudDao();
         MarcaDao marcadao = new MarcaDao();
+        TrabajadorDao trabajadordao = new TrabajadorDao();
 
 
         //VISTA ADMINISTRADOR
-       public ActionResult PrincipalAdmin()
+       public ActionResult PrincipalAdmin(string user, string pass)
         {
-            return View();
+            ViewBag.user = user;
+            ViewBag.pass = pass;
+            int s = trabajadordao.BuscarTrabajador(user, pass);
+            if (s == 1)
+                return View();
+            else
+                return null;
         }
 
 
@@ -45,8 +52,7 @@ namespace Venta_Bicis_Scooters.Controllers
             return View(scooterdao.ConsultaScooter(cod,descripcion));
         }
 
-
-
+        
 
     }
 }
