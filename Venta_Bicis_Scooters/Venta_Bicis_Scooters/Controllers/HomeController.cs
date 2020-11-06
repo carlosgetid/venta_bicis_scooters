@@ -75,6 +75,20 @@ namespace Venta_Bicis_Scooters.Controllers
             }
         }
 
+        public ActionResult ActualizarScooter()
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
         public ActionResult ConsultarScooter(int cod=0, string descripcion=null)
         {
             if (descripcion == null) descripcion = string.Empty;

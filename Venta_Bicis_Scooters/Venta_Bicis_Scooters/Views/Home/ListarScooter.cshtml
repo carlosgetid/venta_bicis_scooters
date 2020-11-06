@@ -89,9 +89,9 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    @Html.ActionLink("Editar", "ActualizarScooter", "Home", new { id = item.ID }) |
+                    @Html.ActionLink("Ver producto", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
                 </td>
             </tr>
         }
