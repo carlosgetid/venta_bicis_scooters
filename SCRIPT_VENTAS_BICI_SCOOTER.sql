@@ -297,10 +297,33 @@ INSERT TB_SCOOTER VALUES('Scooter Electrico Silver N2',5,'Llantas de 8.5 tubeles
 select * from TB_SCOOTER
 go
 
+
+
 --INSERT ACCESORIO (10 A 15)
 
 
 --INSERT BICICLETA (10 A 15)
+
+INSERT TB_SCOOTER VALUES('Bicicleta Mirage',1,'24','Negro','V Brake','16 kg',849,2,null)
+
+INSERT TB_SCOOTER VALUES('Bicicleta Tricicargo Crosstown',1,'26','Negro','V Brake delantero y tambor posterior','20 kg',1699,2,null)
+
+INSERT TB_SCOOTER VALUES('Bicicleta Delta ADV',2,'26','Negro Verde','Disco Delantero y V Brake Trasero','16 kg',549,2,null)
+
+INSERT TB_SCOOTER VALUES('Bicicleta Master Bike',2,'26','Negro Verde','V Brake','18 kg',459,2,null)
+
+INSERT TB_SCOOTER VALUES('Bicicleta XTC JR',3,'20','Metallic Blue','Alloy Linear Pull','18 kg',1199,2,null)
+
+INSERT TB_SCOOTER VALUES('Bicicleta 2020 Suede 2',3,'26','Azul','Aluminio Direct Pull','18 kg',1899,2,null)
+
+INSERT TB_SCOOTER VALUES('Bicicleta Enchant',4,'20','Azul','Alloy Linear Pull','17 kg',1099,2,null)
+
+INSERT TB_SCOOTER VALUES('Bicicleta TEMPT 3',4,'27.5','Negro','SHIMANO M315','19 kg',2799,2,null)
+
+INSERT TB_SCOOTER VALUES('Bicicleta Fr Advanced Ultegra Plasma Red',5,'24','Rojo','Disco hidráulico Shimano BR8070','10 kg',2500,2,null)
+
+INSERT TB_SCOOTER VALUES('Bicicleta Fr Advanced Ultegra Aquafresh',5,'24','Oceano','Disco hidráulico Shimano BR8070','10 kg',2500,2,null)	
+
 
 --INSERT TRABAJADOR (1 a 4)
 insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Carlos', 'Gomez', '87654321', 'carlos@gmail.com', '987654321', 't20201', '123');
