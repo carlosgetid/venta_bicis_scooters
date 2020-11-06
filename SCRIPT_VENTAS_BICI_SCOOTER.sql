@@ -39,10 +39,9 @@ cod_trabajador int IDENTITY(1,1) primary key not null,
 nom_trabajador varchar(200) not null,
 ape_trabajador varchar(200) not null,
 dni_trabajador char(8) not null,
-correo_trabajador varchar(250) not null,
+correo_trabajador varchar(250) not null,  /*funcionara como username */
 cel_trabajador char(9) not null,
 cod_direccion int not null,
-username_trabajador varchar(10) not null,
 password_trabajador varchar(10) not null
 )
 GO
@@ -52,10 +51,9 @@ cod_cliente int IDENTITY(1,1) primary key not null,
 nom_cliente varchar(200) not null,
 ape_cliente varchar(200) not null,
 dni_cliente char(8) not null,
-correo_cliente varchar(250) not null,
+correo_cliente varchar(250) not null, /*funcionara como username */
 cel_cliente char(9) not null,
 cod_direccion int not null,
-username_cliente varchar(10) not null,
 password_cliente varchar(10) not null,
 estado_cliente bit not null
 )
