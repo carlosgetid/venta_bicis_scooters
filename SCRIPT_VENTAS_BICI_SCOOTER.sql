@@ -304,6 +304,7 @@ go
 
 --INSERT BICICLETA (10 A 15)
 
+<<<<<<< HEAD
 INSERT TB_SCOOTER VALUES('Bicicleta Mirage',1,'24','Negro','V Brake','16 kg',849,2,null)
 
 INSERT TB_SCOOTER VALUES('Bicicleta Tricicargo Crosstown',1,'26','Negro','V Brake delantero y tambor posterior','20 kg',1699,2,null)
@@ -324,8 +325,15 @@ INSERT TB_SCOOTER VALUES('Bicicleta Fr Advanced Ultegra Plasma Red',5,'24','Rojo
 
 INSERT TB_SCOOTER VALUES('Bicicleta Fr Advanced Ultegra Aquafresh',5,'24','Oceano','Disco hidráulico Shimano BR8070','10 kg',2500,2,null)	
 
+=======
+INSERT TB_BICICLETA VALUES('Bicicleta Montañera Monark Dakar Thypoon',6,'Aro 24','Gris','V-Brake Delantero y posterior','16 kg',729,2,null)
+
+
+select * from TB_BICICLETA
+>>>>>>> e52f090e7a37b16547996f8b327e3ad44bf9956c
 
 --INSERT TRABAJADOR (1 a 4)
+
 insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Carlos', 'Gomez', '87654321', 'carlos@gmail.com', '987654321', 't20201', '123');
 insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Pablo', 'Saravia', '82654322', 'pablo@gmail.com', '985644322', 't20202', '123');
 insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Eduardo', 'Cordoba', '87558393', 'eduardo@gmail.com', '985423433', 't20203', '123');
@@ -422,17 +430,45 @@ end
 go
 
 
-
 -----------------------------------------------------------------------------
 /*** TABLA TRABAJADOR *****/
 
-create or alter proc usp_Trabajador_Buscar
+create proc usp_Trabajador_Buscar
 @username varchar(20),
 @password varchar(20)
 as
 begin
-	select nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador
+	select nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador,username_trabajador, password_trabajador
 	from TB_TRABAJADOR
 	where username_trabajador = @username and password_trabajador = @password
 end
 go
+
+-----------------------------------------------------------------------------
+/*** TABLA BICICLETA *****/
+
+create proc usp_Bicicleta_Listar
+as
+begin
+	select cod_bicicleta,descrp_bicicleta,m.descrp_marca,aro_bicicleta,color_bicicleta,freno_bicicleta,peso_bicicleta,precio_bicicleta,stock_bicicleta
+	from TB_BICICLETA B
+	join TB_MARCA m on B.cod_marca=m.cod_marca
+end
+go
+
+
+create proc usp_Bicicleta_Consultar
+@descp_bicicleta varchar(350),
+@cod_marca int 
+as
+begin
+	select cod_bicicleta,descrp_bicicleta,m.descrp_marca,aro_bicicleta,color_bicicleta,freno_bicicleta,peso_bicicleta,precio_bicicleta,stock_bicicleta
+	from TB_BICICLETA B
+	join TB_MARCA m on B.cod_marca=m.cod_marca
+	where @descp_bicicleta= '' or UPPER(descrp_bicicleta)=UPPER(@descp_bicicleta) and B.cod_marca=@cod_marca 
+end
+go
+
+
+
+

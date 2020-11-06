@@ -8,7 +8,6 @@ using Venta_Bicis_Scooters.DATABASE;
 using Venta_Bicis_Scooters.ENTITY;
 using Venta_Bicis_Scooters.SERVICE;
 
-
 namespace Venta_Bicis_Scooters.Models
 {
     public class TrabajadorDao : ITrabajadorDao<Trabajador>
@@ -22,7 +21,7 @@ namespace Venta_Bicis_Scooters.Models
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@username", user);
             cmd.Parameters.AddWithValue("@password", pass);
-            
+
             try
             {
                 cn.Open();

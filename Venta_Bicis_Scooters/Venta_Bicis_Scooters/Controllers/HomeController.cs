@@ -14,20 +14,25 @@ namespace Venta_Bicis_Scooters.Controllers
         ScooterCrudDao scooterdao = new ScooterCrudDao();
         MarcaDao marcadao = new MarcaDao();
         TrabajadorDao trabajadordao = new TrabajadorDao();
+        BicicletaCrudDao bicicletadao = new BicicletaCrudDao();
 
+        /*----------------------------------------------------------------------------------------------------------------*/
 
         //VISTA ADMINISTRADOR
-        public ActionResult PrincipalAdmin(Trabajador t)
+        public ActionResult PrincipalAdmin()
         {
             if(Session["User"] != null)
             {
-                return View(t);
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View();
             }
             else
             {
                 return RedirectToAction("Login");
             }
         }
+
 
 
         //VISTA DE LOGIN
@@ -35,14 +40,15 @@ namespace Venta_Bicis_Scooters.Controllers
         {
             return View();
         }
-
         public ActionResult IniciarSesion(string user, string pass)
         {
             Trabajador t = trabajadordao.BuscarTrabajador(user, pass);
             if (t != null)
             {
                 Session["User"] = t.UsernameTrabajador.ToString();
-                return RedirectToAction("PrincipalAdmin", "Home", t);
+                Session["FirstName"] = t.Nombre.ToString();
+                Session["LastName"] = t.Apellido.ToString();
+                return RedirectToAction("PrincipalAdmin", "Home");
             }
             else
             {
@@ -50,6 +56,7 @@ namespace Venta_Bicis_Scooters.Controllers
                 return RedirectToAction("Login");
             }
         }
+
 
 
 
@@ -69,7 +76,25 @@ namespace Venta_Bicis_Scooters.Controllers
             return View(scooterdao.ConsultaScooter(cod,descripcion));
         }
 
-        
+
+
+        /*---------------------------------------BICICLETA-------------------------------*/
+
+        public ActionResult ListarBicicleta()
+        {
+            return View(bicicletadao.ListarBicicleta().ToList());
+        }
+
+
+        public ActionResult ConsultarBicicleta(int cod = 0, string descripcion = null)
+        {
+            if (descripcion == null) descripcion = string.Empty;
+            if (cod == 0) cod = 1;
+            ViewBag.descripcion = descripcion;
+            ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+            return View(bicicletadao.ConsultaBicicleta(cod, descripcion));
+        }
+
 
     }
 }

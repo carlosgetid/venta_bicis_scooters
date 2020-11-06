@@ -133,6 +133,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DATABASE\AccesoDato.cs" />
+    <Compile Include="ENTITY\Bicicleta.cs" />
     <Compile Include="ENTITY\Cliente.cs" />
     <Compile Include="ENTITY\Marca.cs" />
     <Compile Include="ENTITY\Scooter.cs" />
@@ -140,11 +141,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BicicletaCrudDao.cs" />
     <Compile Include="Models\ClienteCrudDao.cs" />
     <Compile Include="Models\MarcaDao.cs" />
     <Compile Include="Models\ScooterCrudDao.cs" />
     <Compile Include="Models\TrabajadorDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SERVICE\IBicicletaCrudDao.cs" />
     <Compile Include="SERVICE\IClienteCrudDao.cs" />
     <Compile Include="SERVICE\IMarca.cs" />
     <Compile Include="SERVICE\IScooterCrudDao.cs" />
@@ -2182,6 +2185,8 @@
     <Content Include="Views\Home\ConsultarScooter.cshtml" />
     <Content Include="Views\Cliente\Login.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\ListarBicicleta.cshtml" />
+    <Content Include="Views\Home\ConsultarBicicleta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

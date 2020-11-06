@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Venta_Bicis_Scooters.DATABASE;
 using Venta_Bicis_Scooters.ENTITY;
 using Venta_Bicis_Scooters.Models;
 
@@ -28,11 +31,11 @@ namespace Venta_Bicis_Scooters.Controllers
         {
             return View();
         }
-
+    
         /*---------------------------------------CLIENTE-------------------------------*/
-        
 
-      
+
+
 
 
 
