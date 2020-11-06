@@ -16,34 +16,30 @@ namespace Venta_Bicis_Scooters.Models
         public int BuscarTrabajador(string user, string pass)
         {
             int salida = -1;
+            Trabajador trabajador;
+
+            SqlConnection cn = AccesoDato.getConnection();
+            SqlCommand cmd = new SqlCommand("usp_Trabajador_Buscar", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@username", user);
+            cmd.Parameters.AddWithValue("@password", pass);
+            
             try
             {
-                SqlConnection cn = AccesoDato.getConnection();
-                SqlCommand cmd = new SqlCommand("usp_Trabajador_Buscar", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@username", user);
-                cmd.Parameters.AddWithValue("@password", pass);
-                System.Diagnostics.Debug.WriteLine("+++++++++232123123+++++++++++++++++++");
-                System.Diagnostics.Debug.WriteLine("+++++++++++++123213+++++++++++++++");
-
                 cn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
-                    Trabajador trabajador = new Trabajador();
-
-                    trabajador.Nombre = dr[0].ToString();
-                        trabajador.Apellido = dr[1].ToString();
-                    trabajador.DNI = dr[3].ToString();
-                    trabajador.Correo = dr[4].ToString();
-                    trabajador.Celular = dr[5].ToString();
-                    trabajador.PasswordTrabajador = dr[6].ToString();
-
+                    trabajador = new Trabajador()
+                    {
+                        Nombre = dr[0].ToString(),
+                        Apellido = dr[1].ToString(),
+                        DNI = dr[2].ToString(),
+                        Correo = dr[3].ToString(),
+                        Celular = dr[4].ToString(),
+                        PasswordTrabajador = dr[5].ToString()
+                    };
                     salida = 1;
-                    System.Diagnostics.Debug.WriteLine("............................");
-                    System.Diagnostics.Debug.WriteLine(salida);
-                    System.Diagnostics.Debug.WriteLine(salida);
-                    System.Diagnostics.Debug.WriteLine(salida);
                 }
                 dr.Close();
                 cn.Close();

@@ -20,11 +20,14 @@ namespace Venta_Bicis_Scooters.Controllers
         {
             ViewBag.user = user;
             ViewBag.pass = pass;
-            int s = trabajadordao.BuscarTrabajador(user, pass);
-            if (s == 1)
+            int salida = trabajadordao.BuscarTrabajador(user, pass);
+            if (salida == 1)
                 return View();
             else
-                return null;
+            {
+                TempData["Error"] = "Usuario y/o contraseña incorrecta";
+                return RedirectToAction("Login");
+            }
         }
 
 
