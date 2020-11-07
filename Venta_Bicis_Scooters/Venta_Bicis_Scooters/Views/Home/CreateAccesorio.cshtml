@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.codMarca, htmlAttributes: new { @class = "control-label col-md-1 text-black-50" })
             <div class="col-md-10">
-                @Html.DropDownList("IdMarca", (SelectList)ViewBag.marca)
+                @Html.DropDownList("IdMarca", (SelectList)ViewBag.marca,new { @class = "form-control" })
             </div>
         </div>
 
@@ -93,7 +93,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.codImg, htmlAttributes: new { @class = "control-label col-md-1 text-black-50" })
             <div class="col-md-10">
-                @Html.DropDownList("cod_imagen", (SelectList)ViewBag.imagen)
+                @Html.DropDownList("cod_imagen", (SelectList)ViewBag.imagen, new { @class = "form-control" })
             </div>
         </div>
 
