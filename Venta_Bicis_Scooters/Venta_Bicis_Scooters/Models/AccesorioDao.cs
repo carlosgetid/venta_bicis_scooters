@@ -39,8 +39,8 @@ namespace Venta_Bicis_Scooters.Models
                         Duracion = dr["duracion_accesorio"].ToString(),
                         Dimension = dr["dimension_accesorio"].ToString(),
                         Precio = Convert.ToDouble(dr["precio_accesorio"]),
-                        Stock = Convert.ToInt32(dr["stock_accesorio"])
-                        /*codImg = Convert.ToInt32(dr["cod_imagen"])*/
+                        Stock = Convert.ToInt32(dr["stock_accesorio"]),
+                        codImg = Convert.ToInt32(dr["cod_imagen"])
 
                     };
                 }
