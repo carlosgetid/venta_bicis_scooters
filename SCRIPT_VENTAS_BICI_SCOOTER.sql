@@ -274,6 +274,11 @@ INSERT TB_MARCA VALUES('CAR-partment')
 
 SELECT * FROM TB_MARCA
 
+
+--GENERAR IMAGENES (2 A 5 )
+select * from TB_IMAGENES
+
+
 --INSERT SCOOTER (10 A 15)
 
 INSERT TB_SCOOTER VALUES('Scooter Eléctrico XIAOMI M365 PRO',1,'Neumaticos de 8.5 pulgadas inflables','Negro','25 km/h','Brushless 300W','De disco ventilado trasero de 120 mm y un sistema de frenos antibloqueo regenerativo E-ABS delantero','Aleación de aluminio',1899,5,null)
@@ -312,7 +317,7 @@ select * from TB_ACCESORIO
 
 
 
-INSERT TB_BICICLETA VALUES('Bicicleta Montañera Monark Dakar Thypoon',6,'Aro 24','Gris','V-Brake Delantero y posterior','16 kg',729,2,null)
+INSERT TB_BICICLETA VALUES('Bicicleta Montañera Monark Dakar Thypoon',6,'Aro 24','Gris','V-Brake Delantero y posterior','16 kg',729,2,1)
 
 
 select * from TB_BICICLETA
@@ -559,3 +564,4 @@ begin
 	where @descp_accesorio= '' or UPPER(descrp_accesorio)=UPPER(@descp_accesorio) and a.cod_marca=@cod_marca 
 end
 go
+

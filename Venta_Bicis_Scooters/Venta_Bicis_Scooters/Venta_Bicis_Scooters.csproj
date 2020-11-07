@@ -157,8 +157,26 @@
     <Compile Include="Models\AccesorioDao.cs" />
     <Compile Include="Models\BicicletaCrudDao.cs" />
     <Compile Include="Models\ClienteCrudDao.cs" />
+    <Compile Include="Models\Imagen_2020Entity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Imagen_2020Entity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Imagen_2020Entity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Imagen_2020Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Imagen_2020Entity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Imagen_2020Entity.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\MarcaDao.cs" />
     <Compile Include="Models\ScooterCrudDao.cs" />
+    <Compile Include="Models\TB_IMAGENES.cs">
+      <DependentUpon>Imagen_2020Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TrabajadorDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SERVICE\IAccesorioCrudDao.cs" />
@@ -2063,6 +2081,16 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Models\Imagen_2020Entity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Imagen_2020Entity.edmx</DependentUpon>
+      <LastGenOutput>Imagen_2020Entity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Imagen_2020Entity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Imagen_2020Entity.edmx</DependentUpon>
+      <LastGenOutput>Imagen_2020Entity.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2087,6 +2115,13 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Scripts\caruselAbajo.js" />
+    <EntityDeploy Include="Models\Imagen_2020Entity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Imagen_2020Entity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Imagen_2020Entity.edmx.diagram">
+      <DependentUpon>Imagen_2020Entity.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -2213,6 +2248,10 @@
     <Content Include="Views\Home\CreateAccesorio.cshtml" />
     <Content Include="Views\Home\EditAccesorio.cshtml" />
     <Content Include="Views\Home\DetailsAccesorio.cshtml" />
+    <Content Include="Views\Home\ListarImagenes.cshtml" />
+    <Content Include="Views\Home\CreateImagen.cshtml" />
+    <Content Include="Views\Home\EditImagen.cshtml" />
+    <Content Include="Views\Home\DetailsImagen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

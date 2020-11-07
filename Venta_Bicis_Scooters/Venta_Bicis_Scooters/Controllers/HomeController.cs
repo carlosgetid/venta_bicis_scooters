@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using Venta_Bicis_Scooters.ENTITY;
 using Venta_Bicis_Scooters.Models;
@@ -16,6 +20,8 @@ namespace Venta_Bicis_Scooters.Controllers
         TrabajadorDao trabajadordao = new TrabajadorDao();
         BicicletaCrudDao bicicletadao = new BicicletaCrudDao();
         AccesorioDao accesoriodao = new AccesorioDao();
+        BD_VENTAS_BICICLETA_SCOOTEREntities db = new BD_VENTAS_BICICLETA_SCOOTEREntities();
+  
         /*----------------------------------------------------------------------------------------------------------------*/
 
         //VISTA ADMINISTRADOR
@@ -128,6 +134,7 @@ namespace Venta_Bicis_Scooters.Controllers
 
 
                 ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+                ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen");
 
                 return View();
             }
@@ -151,6 +158,7 @@ namespace Venta_Bicis_Scooters.Controllers
                     if (ModelState.IsValid)
                     {
                         ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+                        ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen");
 
                         emp.ID = emp.ID;
                         bicicletadao.InsertBicicleta(emp);
@@ -188,6 +196,7 @@ namespace Venta_Bicis_Scooters.Controllers
                 Bicicleta emp = bicicletadao.BuscarBicicleta(id);
 
                 ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+                ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen");
 
                 return View(bicicletadao.BuscarBicicleta(id));
             }
@@ -212,6 +221,7 @@ namespace Venta_Bicis_Scooters.Controllers
                     if (ModelState.IsValid)
                     {
                         ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+                        ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen");
 
                         bicicletadao.UpdateBicicleta(emp);
 
@@ -311,7 +321,7 @@ namespace Venta_Bicis_Scooters.Controllers
 
 
                 ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
-
+                ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen");
                 return View();
             }
             else
@@ -334,6 +344,7 @@ namespace Venta_Bicis_Scooters.Controllers
                     if (ModelState.IsValid)
                     {
                         ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+                        ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen");
 
                         emp.ID = emp.ID;
                         accesoriodao.InsertAccesorio(emp); 
@@ -373,6 +384,7 @@ namespace Venta_Bicis_Scooters.Controllers
                 Accesorio emp = accesoriodao.BuscarAccesorio(id);
 
                 ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+                ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen");
 
                 return View(accesoriodao.BuscarAccesorio(id));
             }
@@ -397,6 +409,7 @@ namespace Venta_Bicis_Scooters.Controllers
                     if (ModelState.IsValid)
                     {
                         ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+                        ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen");
 
                         accesoriodao.UpdateAccesorio(emp);
      
@@ -443,7 +456,6 @@ namespace Venta_Bicis_Scooters.Controllers
         }
 
 
-
         public ActionResult ConsultarAccesorio(int cod = 0, string descripcion = null)
         {
             if (Session["User"] != null)
@@ -465,6 +477,205 @@ namespace Venta_Bicis_Scooters.Controllers
 
            
         }
+
+
+        /*---------------------------------------IMAGENES-------------------------------*/
+
+        /*LISTADO*/
+        public ActionResult ListarImagenes()
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View(db.TB_IMAGENES.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+          
+        }
+
+
+        /*CREATE*/
+        public ActionResult CreateImagen()
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View(new TB_IMAGENES());
+            }
+            else
+            {
+                return RedirectToAction("ListarImagenes");
+            }
+           
+        }
+        [HttpPost]
+        public ActionResult CreateImagen(TB_IMAGENES obj)
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+
+                HttpPostedFileBase archivoBase = Request.Files[0];
+
+
+                if (archivoBase.ContentLength == 0)
+                {
+                    ModelState.AddModelError("foto", "Es necesario seleccionar una Imagen.... ");
+                    return View(obj);
+                }
+                else
+                {
+                    if (archivoBase.FileName.EndsWith(".jpg"))
+                    {
+                        WebImage image = new WebImage(archivoBase.InputStream);
+                        obj.url_imagen = image.GetBytes();  //te trae la foto en bytes
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("foto", "Solo se permite  imagenes con formato JPG.... ");
+                        return View(obj);
+                    }
+                }
+
+
+                db.TB_IMAGENES.Add(obj);
+                db.SaveChanges();       //sincroniza 
+                return RedirectToAction("ListarImagenes");
+
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+        }
+
+
+        /*METODO PARA EXTRAER Y CONVERTIR LA SECUENCIA DE BYTES EN IMAGEN*/
+        public ActionResult getImage(int id)
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+
+                TB_IMAGENES persona = db.TB_IMAGENES.Find(id);
+                byte[] byteImage = persona.url_imagen;
+
+                //convertir
+                MemoryStream memoryStream = new MemoryStream(byteImage);
+                Image image = Image.FromStream(memoryStream);
+
+                memoryStream = new MemoryStream();
+                image.Save(memoryStream, ImageFormat.Jpeg);
+                memoryStream.Position = 0;
+
+                return File(memoryStream, "imagen/jpg");
+
+
+            }
+            else
+            {
+                return RedirectToAction("ListarImagenes");
+            }
+
+        }
+
+
+
+        /*EDIT*/
+        public ActionResult EditImagen(int? id)
+        {
+
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+                TB_IMAGENES persona = db.TB_IMAGENES.Find(id);
+                return View(persona);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+
+
+         
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditImagen(TB_IMAGENES obj)
+        {
+
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+
+
+                //byte[] imagenActual = null
+                TB_IMAGENES _persona = new TB_IMAGENES();
+                HttpPostedFileBase archivoBase = Request.Files[0];
+
+                //me quedo con la imagen que tengo
+                if (archivoBase.ContentLength == 0)
+                {
+                    _persona = db.TB_IMAGENES.Find(obj.cod_imagen);
+                    obj.url_imagen = _persona.url_imagen;
+                }
+                else
+                {
+                    if (archivoBase.FileName.EndsWith(".jpg"))
+                    {
+                        WebImage image = new WebImage(archivoBase.InputStream);
+                        obj.url_imagen = image.GetBytes();
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("foto", "Solo se permite  imagenes con formato JPG.... ");
+                        return View(db.TB_IMAGENES.Find(obj.cod_imagen));
+                    }
+                }
+
+                if (ModelState.IsValid)
+                {
+                    db.Entry(_persona).State = System.Data.Entity.EntityState.Detached;
+                    db.Entry(obj).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                return RedirectToAction("ListarImagenes");
+
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+
+
+        }
+
+
+        /*DETAILS*/
+        public ActionResult DetailsImagen(int? id)
+        {
+            TB_IMAGENES persona = db.TB_IMAGENES.Find(id);
+            return View(persona);
+        }
+
+
 
 
 
