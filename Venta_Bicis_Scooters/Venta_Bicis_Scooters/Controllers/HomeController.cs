@@ -64,7 +64,30 @@ namespace Venta_Bicis_Scooters.Controllers
 
         public ActionResult ListarScooter()
         {
-            return View(scooterdao.ListarScooter().ToList());
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View(scooterdao.ListarScooter().ToList());
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
+        public ActionResult ActualizarScooter()
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         public ActionResult ConsultarScooter(int cod=0, string descripcion=null)
@@ -82,17 +105,42 @@ namespace Venta_Bicis_Scooters.Controllers
 
         public ActionResult ListarBicicleta()
         {
-            return View(bicicletadao.ListarBicicleta().ToList());
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View(bicicletadao.ListarBicicleta().ToList());
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+         
         }
 
 
         public ActionResult ConsultarBicicleta(int cod = 0, string descripcion = null)
         {
-            if (descripcion == null) descripcion = string.Empty;
-            if (cod == 0) cod = 1;
-            ViewBag.descripcion = descripcion;
-            ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
-            return View(bicicletadao.ConsultaBicicleta(cod, descripcion));
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+
+                if (descripcion == null) descripcion = string.Empty;
+                if (cod == 0) cod = 1;
+                ViewBag.descripcion = descripcion;
+                ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+                return View(bicicletadao.ConsultaBicicleta(cod, descripcion));
+
+
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+
         }
 
 
@@ -100,17 +148,40 @@ namespace Venta_Bicis_Scooters.Controllers
         /*---------------------------------------ACCESORIO-------------------------------*/
         public ActionResult ListarAccesorio()
         {
-            return View(accesoriodao.ListarAccesorio().ToList());
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View(accesoriodao.ListarAccesorio().ToList());
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+          
         }
 
 
         public ActionResult ConsultarAccesorio(int cod = 0, string descripcion = null)
         {
-            if (descripcion == null) descripcion = string.Empty;
-            if (cod == 0) cod = 1;
-            ViewBag.descripcion = descripcion;
-            ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
-            return View(accesoriodao.ConsultaAccesorio(cod, descripcion));
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+
+                if (descripcion == null) descripcion = string.Empty;
+                if (cod == 0) cod = 1;
+                ViewBag.descripcion = descripcion;
+                ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+                return View(accesoriodao.ConsultaAccesorio(cod, descripcion));
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+           
         }
 
 

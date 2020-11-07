@@ -299,6 +299,8 @@ INSERT TB_SCOOTER VALUES('Scooter Electrico Silver N2',5,'Llantas de 8.5 tubeles
 select * from TB_SCOOTER
 go
 
+
+
 --INSERT ACCESORIO (10 A 15)
 INSERT TB_ACCESORIO VALUES('Lámpara luz frontal 3 LED Ultra brillante',11,'Negro','0.1 KG','PVC','Nuevo',null,55,5,null)
 
@@ -306,10 +308,15 @@ select * from TB_ACCESORIO
 
 --INSERT BICICLETA (10 A 15)
 
+
+
+
+
 INSERT TB_BICICLETA VALUES('Bicicleta Montañera Monark Dakar Thypoon',6,'Aro 24','Gris','V-Brake Delantero y posterior','16 kg',729,2,null)
 
 
 select * from TB_BICICLETA
+
 
 --INSERT TRABAJADOR (1 a 4)
 
