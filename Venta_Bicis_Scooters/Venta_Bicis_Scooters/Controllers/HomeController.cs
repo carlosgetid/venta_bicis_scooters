@@ -105,6 +105,41 @@ namespace Venta_Bicis_Scooters.Controllers
             return View(scooterdao.ConsultaScooter(cod,descripcion));
         }
 
+        public ActionResult CreateScooter()
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult CreateScooter(Scooter scooter)
+        {
+            if (Session["User"] != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    ViewBag.Nombre = Session["FirstName"];
+                    ViewBag.Apellido = Session["LastName"];
+
+                    scooterdao.InsertScooter(scooter);
+                    return View();
+                }
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
 
 
         /*---------------------------------------BICICLETA-------------------------------*/
