@@ -24,5 +24,6 @@ namespace Venta_Bicis_Scooters.ENTITY
         public int Stock { get; set; }
 
         public int codMarca { get; set; }
+        public int codImg { get; set; }
     }
 }

@@ -39,6 +39,8 @@ namespace Venta_Bicis_Scooters.Models
                         Peso = dr["peso_bicicleta"].ToString(),
                         Precio = Convert.ToDouble(dr["precio_bicicleta"]),
                         Stock = Convert.ToInt32(dr["stock_bicicleta"])
+                        /*codImg = Convert.ToInt32(dr["cod_imagen"])*/
+
                     };
                 }
                 dr.Close();
@@ -174,7 +176,7 @@ namespace Venta_Bicis_Scooters.Models
                 SqlCommand cmd = new SqlCommand("usp_Bicicleta_Actualizar", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-
+                cmd.Parameters.AddWithValue("@Id", e.ID);
                 cmd.Parameters.AddWithValue("@desc", e.Descripcion);
                 cmd.Parameters.AddWithValue("@codmarca", e.codMarca);
                 cmd.Parameters.AddWithValue("@aro", e.Aro);
