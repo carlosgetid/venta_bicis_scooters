@@ -461,8 +461,8 @@ go
 exec usp_Scooter_Insertar 'Scooter Electrico Silver N3',5,'Llantas de 9.0 tubeless','Rojo','30 km/h','Brushless 250W','Delantero','Aleación de aluminio',1199,5,null
 select * from TB_SCOOTER
 
-/*
-create proc usp_Scooter_Actualizar
+
+create or alter proc usp_Scooter_Actualizar
 @Cod_Scooter int, @Descrp_Scooter varchar(350), @Cod_Marca int, @Aro_Scooter varchar(200), 
 @Color_Scooter varchar(200), @Velocidad_Scooter varchar(200), 
 @Motor_Scooter varchar(200), @Freno_Scooter varchar(200), @Material_Scooter varchar(200),
@@ -475,9 +475,7 @@ begin
 end
 go
 
-exec usp_Scooter_Actualizar 'Scooter Electrico Silver N4',5,'Llantas de 9.0 tubeless','Rojo','30 km/h','Brushless 250W','Trasero','Aleación de aluminio',1299,5,null
-*/
-
+exec usp_Scooter_Actualizar 1,'Scooter Electrico Silver N4',5,'Llantas de 9.0 tubeless','Rojo','30 km/h','Brushless 250W','Delantero','Aleación de aluminio',1299,5,null
 
 
 create proc usp_Marca_Listar
