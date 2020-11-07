@@ -2290,6 +2290,8 @@
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Cliente\TodasBicicletas.cshtml" />
     <Content Include="Views\Cliente\TodosScooter.cshtml" />
+    <Content Include="Views\Home\ConsultarCliente.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

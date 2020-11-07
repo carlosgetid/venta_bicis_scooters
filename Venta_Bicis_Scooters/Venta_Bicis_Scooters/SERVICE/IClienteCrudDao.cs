@@ -11,11 +11,11 @@ namespace Venta_Bicis_Scooters.SERVICE
 
         void InsertCliente(T e);
         void UpdateCliente(T e);
-        void DeleteCliente(T e);
+
         T BuscarCliente(int id);
 
 
-        List<T> ListarCliente(int estado);
+        List<T> ConsultarCliente(string dni);
 
     }
 }
