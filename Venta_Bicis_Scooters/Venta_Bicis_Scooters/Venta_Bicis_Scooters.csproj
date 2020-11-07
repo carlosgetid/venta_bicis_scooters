@@ -2210,6 +2210,9 @@
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\CreateAccesorio.cshtml" />
+    <Content Include="Views\Home\EditAccesorio.cshtml" />
+    <Content Include="Views\Home\DetailsAccesorio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -476,7 +476,7 @@ create proc usp_Bicicleta_Buscar
 @id int 
 as
 begin
-	select cod_bicicleta,descrp_bicicleta,cod_marca,aro_bicicleta,color_bicicleta,freno_bicicleta,peso_bicicleta,precio_bicicleta,stock_bicicleta
+	select cod_bicicleta,descrp_bicicleta,cod_marca,aro_bicicleta,color_bicicleta,freno_bicicleta,peso_bicicleta,precio_bicicleta,stock_bicicleta,cod_imagen
 	from TB_BICICLETA 
 	where cod_bicicleta=@id
 end
@@ -508,6 +508,45 @@ begin
 	join TB_MARCA m on a.cod_marca=m.cod_marca
 end
 go
+
+create proc usp_Accesorio_Insertar
+@desc varchar(350),@codmarca int , @color varchar(200), @peso varchar(200),@material varchar(200),@duracion varchar(200),@dimension varchar(200),@precio decimal,@stock int,@codimg int
+as
+begin
+	insert into TB_ACCESORIO(descrp_accesorio,cod_marca,color_accesorio,peso_accesorio,material_accesorio,duracion_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio,cod_imagen) 
+	values (@desc,@codmarca,@color,@peso, @material, @duracion, @dimension,@precio,@stock,@codimg)
+end
+go
+
+create proc usp_Accesorio_Actualizar
+@Id int, @desc varchar(350),@codmarca int , @color varchar(200), @peso varchar(200),@material varchar(200),@duracion varchar(200),@dimension varchar(200),@precio decimal,@stock int,@codimg int
+as
+begin
+	update TB_ACCESORIO
+	set descrp_accesorio=@desc,
+		cod_marca=@codmarca,
+		color_accesorio=@color,
+		peso_accesorio=@peso,
+		material_accesorio=@material,
+		duracion_accesorio=@duracion,
+		dimension_accesorio=@dimension,
+		precio_accesorio=@precio,
+		stock_accesorio=@stock,
+		cod_imagen=@codimg
+	where cod_accesorio=@Id
+end
+go
+
+create proc usp_Accesorio_Buscar
+@Id int
+as
+begin
+	select cod_accesorio,descrp_accesorio,cod_marca,color_accesorio,peso_accesorio,material_accesorio,duracion_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio,cod_imagen
+	from TB_ACCESORIO 
+	where cod_accesorio=@Id
+end
+go
+
 
 create proc usp_Accesorio_Consultar
 @descp_accesorio varchar(350),

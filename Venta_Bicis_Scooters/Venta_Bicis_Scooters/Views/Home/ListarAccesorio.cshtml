@@ -8,7 +8,7 @@
 <h2>Listado Accesorio</h2>
 
 <p>
-    @Html.ActionLink("Nuevo Accesorio", "Create",null,new {@class= "btn btn-outline-success" })
+    @Html.ActionLink("Nuevo Accesorio", "CreateAccesorio", null,new {@class= "btn btn-outline-success" })
 </p>
 
 
@@ -86,9 +86,9 @@
                 </td>
 
                 <td class="text-center">
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-outline-success" }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-outline-primary" }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-outline-danger" })
+                    @Html.ActionLink("Edit", "EditAccesorio", new { id = item.ID }, new { @class = "btn btn-outline-success" }) |
+                    @Html.ActionLink("Details", "DetailsAccesorio", new { id = item.ID }, new { @class = "btn btn-outline-primary" }) |
+                    @Html.ActionLink("Delete", "DeleteAccesorio", new { id = item.ID }, new { @class = "btn btn-outline-danger" })
                 </td>
             </tr>
         }

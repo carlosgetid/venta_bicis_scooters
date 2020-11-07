@@ -257,7 +257,6 @@ namespace Venta_Bicis_Scooters.Controllers
         }
 
 
-
         public ActionResult ConsultarBicicleta(int cod = 0, string descripcion = null)
         {
             if (Session["User"] != null)
@@ -299,6 +298,150 @@ namespace Venta_Bicis_Scooters.Controllers
             }
           
         }
+
+
+
+        //INSERT
+        public ActionResult CreateAccesorio()
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+
+                ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+        }
+        [HttpPost]
+        public ActionResult CreateAccesorio(Accesorio emp)
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+
+                        emp.ID = emp.ID;
+                        accesoriodao.InsertAccesorio(emp); 
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return RedirectToAction("ListarAccesorio");
+                    }
+
+                }
+                catch
+                {
+                    return View();
+                }
+
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+        }
+
+
+
+
+        //UPDATE
+        public ActionResult EditAccesorio(int id)
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+
+                Accesorio emp = accesoriodao.BuscarAccesorio(id);
+
+                ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+
+                return View(accesoriodao.BuscarAccesorio(id));
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+
+        }
+        [HttpPost]
+        public ActionResult EditAccesorio(Accesorio emp)
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+
+                        accesoriodao.UpdateAccesorio(emp);
+     
+
+                        return RedirectToAction("ListarAccesorio");
+                    }
+                    else
+                    {
+                        return RedirectToAction("ListarAccesorio");
+                    }
+
+                }
+                catch
+                {
+                    return View();
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+
+
+
+        }
+
+
+        //DETALLES
+        public ActionResult DetailsAccesorio(int id)
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View(accesoriodao.BuscarAccesorio(id));
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+
+        }
+
 
 
         public ActionResult ConsultarAccesorio(int cod = 0, string descripcion = null)
