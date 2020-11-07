@@ -118,6 +118,145 @@ namespace Venta_Bicis_Scooters.Controllers
          
         }
 
+        //INSERT
+        public ActionResult Create()
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+
+                ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+          
+        }
+        [HttpPost]
+        public ActionResult Create(Bicicleta emp)
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+
+                        emp.ID = emp.ID;
+                        bicicletadao.InsertBicicleta(emp);
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return RedirectToAction("ListarBicicleta");
+                    }
+
+                }
+                catch
+                {
+                    return View();
+                }
+
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+        }
+
+
+        //UPDATE
+        public ActionResult Edit(int id)
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+
+                Bicicleta emp = bicicletadao.BuscarBicicleta(id);
+
+                ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+
+                return View(bicicletadao.BuscarBicicleta(id));
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+
+        }
+        [HttpPost]
+        public ActionResult Edit(Bicicleta emp)
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+
+
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca");
+
+                        bicicletadao.UpdateBicicleta(emp);
+
+                        return RedirectToAction("ListarBicicleta");
+                    }
+                    else
+                    {
+                        return RedirectToAction("ListarBicicleta");
+                    }
+
+                }
+                catch
+                {
+                    return View();
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+
+           
+
+        }
+
+
+        //DETALLES
+        public ActionResult Details(int id)
+        {
+            if (Session["User"] != null)
+            {
+                ViewBag.Nombre = Session["FirstName"];
+                ViewBag.Apellido = Session["LastName"];
+                return View(bicicletadao.BuscarBicicleta(id));
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+         
+        }
+
+
 
         public ActionResult ConsultarBicicleta(int cod = 0, string descripcion = null)
         {

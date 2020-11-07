@@ -443,6 +443,46 @@ end
 go
 
 
+
+create proc usp_Bicicleta_Insertar
+@desc varchar(350),@codmarca int ,@aro varchar(200), @color varchar(200),@freno varchar(200), @peso varchar(200),@precio decimal,@stock int,@codimg int
+as
+begin
+	insert into TB_BICICLETA (descrp_bicicleta,cod_marca,aro_bicicleta,color_bicicleta,freno_bicicleta,peso_bicicleta,precio_bicicleta,stock_bicicleta,cod_imagen) 
+	values (@desc,@codmarca,@aro,@color,@freno,@peso,@precio,@stock,@codimg)
+end
+go
+
+create proc usp_Bicicleta_Actualizar
+@Id int, @desc varchar(350),@codmarca int ,@aro varchar(200), @color varchar(200),@freno varchar(200), @peso varchar(200),@precio decimal,@stock int,@codimg int
+as
+begin
+	update TB_BICICLETA 
+	set	descrp_bicicleta=@desc,
+		cod_marca=@codmarca,
+		aro_bicicleta=@aro,
+		color_bicicleta=@color,
+		freno_bicicleta=@freno,
+		peso_bicicleta=@peso,
+		precio_bicicleta=@precio,
+		stock_bicicleta=@stock,
+		cod_imagen=@codimg
+	where cod_bicicleta=@Id
+end
+go
+
+
+create proc usp_Bicicleta_Buscar
+@id int 
+as
+begin
+	select cod_bicicleta,descrp_bicicleta,cod_marca,aro_bicicleta,color_bicicleta,freno_bicicleta,peso_bicicleta,precio_bicicleta,stock_bicicleta
+	from TB_BICICLETA 
+	where cod_bicicleta=@id
+end
+go
+
+
 create proc usp_Bicicleta_Consultar
 @descp_bicicleta varchar(350),
 @cod_marca int 
