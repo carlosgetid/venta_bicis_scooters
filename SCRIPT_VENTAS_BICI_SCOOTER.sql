@@ -331,7 +331,7 @@ go
 
 --INSERT BICICLETA (10 A 15)
 
-INSERT TB_BICICLETA VALUES('Bicicleta Montañera Monark Dakar Thypoon',6,'Aro 24','Gris','V-Brake Delantero y posterior','16 kg',729,2,1)
+INSERT TB_BICICLETA VALUES('Bicicleta Montañera Monark Dakar Thypoon',6,'Aro 24','Gris','V-Brake Delantero y posterior','16 kg',729,2,null)
 
 INSERT TB_BICICLETA VALUES('Bicicleta Mirage',6,'24','Negro','V Brake','16 kg',849,2,null)
 
@@ -460,6 +460,7 @@ go
 
 exec usp_Scooter_Insertar 'Scooter Electrico Silver N3',5,'Llantas de 9.0 tubeless','Rojo','30 km/h','Brushless 250W','Delantero','Aleación de aluminio',1199,5,null
 select * from TB_SCOOTER
+go
 
 /*
 create proc usp_Scooter_Actualizar
