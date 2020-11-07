@@ -249,9 +249,6 @@ ADD CONSTRAINT FK_DETALLE_PEDIDO_BICICLETA FOREIGN KEY (nro_pedido) REFERENCES T
 --INSERT CLIENTE (5 A 10) 
 
 
---INSERT TRABAJADOR ----> SERA EL ADMINISTRADOR DE LA PAGINA
-
-
 --INSERT MARCA (TODAS LAS MARCAS DEL MERCADO QUE PRODUCEN NUESTROS PRODUCTOS )
 
 --SCOOTER
@@ -261,7 +258,6 @@ INSERT TB_MARCA VALUES('Cecotec')
 INSERT TB_MARCA VALUES('Segway Ninebot')
 INSERT TB_MARCA VALUES('Razor Power')
 INSERT TB_MARCA VALUES('Revolt')
-
 --BICICLETA
 INSERT TB_MARCA VALUES('Monark')
 INSERT TB_MARCA VALUES('Monarette')
@@ -309,18 +305,57 @@ go
 --INSERT ACCESORIO (10 A 15)
 INSERT TB_ACCESORIO VALUES('Lámpara luz frontal 3 LED Ultra brillante',11,'Negro','0.1 KG','PVC','Nuevo',null,55,5,null)
 
+INSERT TB_ACCESORIO VALUES('Set de inflador de bolsillo con manómetro',1,'Negro','95 gr','Plástico','','21 cm de alto y 3 cm de ancho',69.90,2,null)
+
+INSERT TB_ACCESORIO VALUES('Set de herramientas múltiples',2,'Negro','500 gr','Acero','','9 x 4.5 x 2.5 cm',39.90,2,null)
+
+INSERT TB_ACCESORIO VALUES('Soporte para celular de plástico',3,'Negro y Rojo','120 gr','Plástico','','20 cm de alto y 15 cm de ancho',29.90,2,null)
+
+INSERT TB_ACCESORIO VALUES('Asiento ajustable para scooter eléctrico ',4,'Negro','2.8 kg','Cuerina Alumnio y Hierro','','16.5 x 27 cm',189.90,2,null)
+
+INSERT TB_ACCESORIO VALUES('Luces Bolt combo led',5,'Negro','30 gr','Aluminio de alta calidad y plástico de nylon de primera clase','20 horas','21 cm de alto y 3 cm de ancho',69.90,2,null)
+
+INSERT TB_ACCESORIO VALUES('Porta Botella',6,'Negro','50 gr','PVC','',' abrazadera 1.5 pies para botellas de 1 litro',39.90,2,null)
+
+INSERT TB_ACCESORIO VALUES('Set de protección Krown 2 rodilleras 2 coderas 2 muñequeras',7,'Negro','500 gr','Proteccion de PVC y acolchado con espuma de alta densidad','','',119.90,2,null)
+
+INSERT TB_ACCESORIO VALUES('Casco de Bicicleta Unisex',8,'Negro','228 gr','Policarbonato','','30 cm',179.90,2,null)
+
+INSERT TB_ACCESORIO VALUES('Candado U-Lock Con Alarma Inteligente',9,'Negro y amarillo','1 kg','Acero templado','','30 cm y más grueso del momento 16mm',270,2,null)
+
+INSERT TB_ACCESORIO VALUES('Mochila de Hidra Drafter 10L',10,'Azul marino','1 kg','Lona','','46 cm de alto y 25 cm de ancho',479,2,null)
+
 select * from TB_ACCESORIO
+go
+
 
 --INSERT BICICLETA (10 A 15)
 
-
-
-
-
 INSERT TB_BICICLETA VALUES('Bicicleta Montañera Monark Dakar Thypoon',6,'Aro 24','Gris','V-Brake Delantero y posterior','16 kg',729,2,1)
+
+INSERT TB_BICICLETA VALUES('Bicicleta Mirage',6,'24','Negro','V Brake','16 kg',849,2,null)
+
+INSERT TB_BICICLETA VALUES('Bicicleta Tricicargo Crosstown',6,'26','Negro','V Brake delantero y tambor posterior','20 kg',1699,2,null)
+
+INSERT TB_BICICLETA VALUES('Bicicleta Delta ADV',7,'26','Negro Verde','Disco Delantero y V Brake Trasero','16 kg',549,2,null)
+
+INSERT TB_BICICLETA VALUES('Bicicleta Master Bike',7,'26','Negro Verde','V Brake','18 kg',459,2,null)
+
+INSERT TB_BICICLETA VALUES('Bicicleta XTC JR',8,'20','Metallic Blue','Alloy Linear Pull','18 kg',1199,2,null)
+
+INSERT TB_BICICLETA VALUES('Bicicleta 2020 Suede 2',8,'26','Azul','Aluminio Direct Pull','18 kg',1899,2,null)
+
+INSERT TB_BICICLETA VALUES('Bicicleta Enchant',9,'20','Azul','Alloy Linear Pull','17 kg',1099,2,null)
+
+INSERT TB_BICICLETA VALUES('Bicicleta TEMPT 3',9,'27.5','Negro','SHIMANO M315','19 kg',2799,2,null)
+
+INSERT TB_BICICLETA VALUES('Bicicleta Fr Advanced Ultegra Plasma Red',10,'24','Rojo','Disco hidráulico Shimano BR8070','10 kg',2500,2,null)
+
+INSERT TB_BICICLETA VALUES('Bicicleta Fr Advanced Ultegra Aquafresh',10,'24','Oceano','Disco hidráulico Shimano BR8070','10 kg',2500,2,null)	
 
 
 select * from TB_BICICLETA
+
 
 
 --INSERT TRABAJADOR (1 a 4)
@@ -409,6 +444,39 @@ begin
 	where @descp_scooter='' or  UPPER(descrp_scooter)=UPPER(@descp_scooter) and s.cod_marca=@cod_marca 
 end
 go
+
+/* Creado por Brandon */
+create proc usp_Scooter_Insertar
+@Descrp_Scooter varchar(350), @Cod_Marca int, @Aro_Scooter varchar(200), 
+@Color_Scooter varchar(200), @Velocidad_Scooter varchar(200), 
+@Motor_Scooter varchar(200), @Freno_Scooter varchar(200), @Material_Scooter varchar(200),
+@Precio_Scooter decimal(18,0), @Stock_Scooter int, @Cod_Imagen int
+as
+begin
+	insert TB_SCOOTER(descrp_scooter,cod_marca,aro_scooter,color_scooter,velocidad_scooter,motor_scooter,freno_scooter,material_scooter,precio_scooter,stock_scooter,cod_imagen)
+	values(@Descrp_Scooter,@Cod_Marca,@Aro_Scooter,@Color_Scooter,@Velocidad_Scooter,@Motor_Scooter,@Freno_Scooter,@Material_Scooter,@Precio_Scooter,@Stock_Scooter,@Cod_Imagen)
+end
+go
+
+exec usp_Scooter_Insertar 'Scooter Electrico Silver N3',5,'Llantas de 9.0 tubeless','Rojo','30 km/h','Brushless 250W','Delantero','Aleación de aluminio',1199,5,null
+select * from TB_SCOOTER
+
+/*
+create proc usp_Scooter_Actualizar
+@Cod_Scooter int, @Descrp_Scooter varchar(350), @Cod_Marca int, @Aro_Scooter varchar(200), 
+@Color_Scooter varchar(200), @Velocidad_Scooter varchar(200), 
+@Motor_Scooter varchar(200), @Freno_Scooter varchar(200), @Material_Scooter varchar(200),
+@Precio_Scooter decimal(18,0), @Stock_Scooter int, @Cod_Imagen int
+as
+begin
+	update TB_SCOOTER set descrp_scooter=@Descrp_Scooter, cod_marca=@Cod_Marca, aro_scooter=@Aro_Scooter, color_scooter=@Color_Scooter, velocidad_scooter=@Velocidad_Scooter,
+	motor_scooter=@Motor_Scooter, freno_scooter=@Freno_Scooter, material_scooter=@Material_Scooter, precio_scooter=@Precio_Scooter, stock_scooter=@Stock_Scooter, cod_imagen=@Cod_Imagen
+	where cod_scooter=@Cod_Scooter
+end
+go
+
+exec usp_Scooter_Actualizar 'Scooter Electrico Silver N4',5,'Llantas de 9.0 tubeless','Rojo','30 km/h','Brushless 250W','Trasero','Aleación de aluminio',1299,5,null
+*/
 
 
 
