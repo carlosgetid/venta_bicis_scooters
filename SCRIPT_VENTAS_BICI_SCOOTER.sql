@@ -405,6 +405,39 @@ begin
 end
 go
 
+/* Creado por Brandon */
+create proc usp_Scooter_Insertar
+@Descrp_Scooter varchar(350), @Cod_Marca int, @Aro_Scooter varchar(200), 
+@Color_Scooter varchar(200), @Velocidad_Scooter varchar(200), 
+@Motor_Scooter varchar(200), @Freno_Scooter varchar(200), @Material_Scooter varchar(200),
+@Precio_Scooter decimal(18,0), @Stock_Scooter int, @Cod_Imagen int
+as
+begin
+	insert TB_SCOOTER(descrp_scooter,cod_marca,aro_scooter,color_scooter,velocidad_scooter,motor_scooter,freno_scooter,material_scooter,precio_scooter,stock_scooter,cod_imagen)
+	values(@Descrp_Scooter,@Cod_Marca,@Aro_Scooter,@Color_Scooter,@Velocidad_Scooter,@Motor_Scooter,@Freno_Scooter,@Material_Scooter,@Precio_Scooter,@Stock_Scooter,@Cod_Imagen)
+end
+go
+
+exec usp_Scooter_Insertar 'Scooter Electrico Silver N3',5,'Llantas de 9.0 tubeless','Rojo','30 km/h','Brushless 250W','Delantero','Aleación de aluminio',1199,5,null
+select * from TB_SCOOTER
+
+/*
+create proc usp_Scooter_Actualizar
+@Cod_Scooter int, @Descrp_Scooter varchar(350), @Cod_Marca int, @Aro_Scooter varchar(200), 
+@Color_Scooter varchar(200), @Velocidad_Scooter varchar(200), 
+@Motor_Scooter varchar(200), @Freno_Scooter varchar(200), @Material_Scooter varchar(200),
+@Precio_Scooter decimal(18,0), @Stock_Scooter int, @Cod_Imagen int
+as
+begin
+	update TB_SCOOTER set descrp_scooter=@Descrp_Scooter, cod_marca=@Cod_Marca, aro_scooter=@Aro_Scooter, color_scooter=@Color_Scooter, velocidad_scooter=@Velocidad_Scooter,
+	motor_scooter=@Motor_Scooter, freno_scooter=@Freno_Scooter, material_scooter=@Material_Scooter, precio_scooter=@Precio_Scooter, stock_scooter=@Stock_Scooter, cod_imagen=@Cod_Imagen
+	where cod_scooter=@Cod_Scooter
+end
+go
+
+exec usp_Scooter_Actualizar 'Scooter Electrico Silver N4',5,'Llantas de 9.0 tubeless','Rojo','30 km/h','Brushless 250W','Trasero','Aleación de aluminio',1299,5,null
+*/
+
 
 
 create proc usp_Marca_Listar
