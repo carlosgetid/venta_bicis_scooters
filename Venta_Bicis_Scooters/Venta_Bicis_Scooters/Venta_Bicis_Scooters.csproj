@@ -2278,7 +2278,6 @@
     <Content Include="Views\Home\ListarAccesorio.cshtml" />
     <Content Include="Views\Home\ConsultarAccesorio.cshtml" />
     <Content Include="Views\Home\Create.cshtml" />
-    <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\CreateAccesorio.cshtml" />
     <Content Include="Views\Home\EditAccesorio.cshtml" />
@@ -2289,6 +2288,8 @@
     <Content Include="Views\Home\DetailsImagen.cshtml" />
     <Content Include="Views\Home\CreateScooter.cshtml" />
     <Content Include="Views\Cliente\TodasBicicletas.cshtml" />
+    <Content Include="Views\Home\Edit.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

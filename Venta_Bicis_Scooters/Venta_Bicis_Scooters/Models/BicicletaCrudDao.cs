@@ -32,14 +32,14 @@ namespace Venta_Bicis_Scooters.Models
                     {
                         ID = Convert.ToInt32(dr["cod_bicicleta"]),
                         Descripcion = dr["descrp_bicicleta"].ToString(),
-                        codMarca = Convert.ToInt32(dr["cod_marca"].ToString()),
+                        codMarca = Convert.ToInt32(dr["cod_marca"]),
                         Aro = dr["aro_bicicleta"].ToString(),
                         Color = dr["color_bicicleta"].ToString(),
                         Freno = dr["freno_bicicleta"].ToString(),
                         Peso = dr["peso_bicicleta"].ToString(),
                         Precio = Convert.ToDouble(dr["precio_bicicleta"]),
-                        Stock = Convert.ToInt32(dr["stock_bicicleta"])
-                        /*codImg = Convert.ToInt32(dr["cod_imagen"])*/
+                        Stock = Convert.ToInt32(dr["stock_bicicleta"]),
+                        codImg = Convert.ToInt32(dr["cod_imagen"])
 
                     };
                 }

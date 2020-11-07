@@ -272,19 +272,54 @@ SELECT * FROM TB_MARCA
 
 
 --GENERAR IMAGENES (2 A 5 )
-insert TB_IMAGENES values (1, 'abc', null) /**metan imagenes aqui**/ 
+
+
+insert TB_IMAGENES values ('Bicicleta Montañera Monark Dakar Thypoon', (SELECT * FROM OPENROWSET(BULK N'D:\img\1.jpg', SINGLE_BLOB) as url1)  )
+insert TB_IMAGENES values ('Bicicleta Mirage', (SELECT * FROM OPENROWSET(BULK N'D:\img\Bicicleta Mirage.jpg', SINGLE_BLOB) as url2)  )
+insert TB_IMAGENES values ('Bicicleta Tricicargo Crosstown', (SELECT * FROM OPENROWSET(BULK N'D:\img\Bicicleta Tricicargo Crosstown.jpg', SINGLE_BLOB) as url3)  )
+insert TB_IMAGENES values ('Bicicleta Delta ADV', (SELECT * FROM OPENROWSET(BULK N'D:\img\Bicicleta Delta ADV.jpg', SINGLE_BLOB) as url4)  )
+insert TB_IMAGENES values ('Bicicleta Master Bike', (SELECT * FROM OPENROWSET(BULK N'D:\img\Bicicleta Master Bike.jpg', SINGLE_BLOB) as url5)  )
+insert TB_IMAGENES VALUES ('Bicicleta XTC JR', (SELECT * FROM OPENROWSET(BULK N'D:\img\Bicicleta XTC JR.jpg', SINGLE_BLOB) as url6  ) )
+
+
+insert TB_IMAGENES values ('Scooter Eléctrico XIAOMI M365 PRO', (SELECT * FROM OPENROWSET(BULK N'D:\img\Scooter Eléctrico XIAOMI M365 PRO.jpg', SINGLE_BLOB) as url7)  )
+insert TB_IMAGENES values ('Scooter electrico Xiaomi M365', (SELECT * FROM OPENROWSET(BULK N'D:\img\Scooter electrico Xiaomi M365.jpg', SINGLE_BLOB) as url8)  )
+insert TB_IMAGENES values ('Scooter electrico Bongo Serie S Unlimited', (SELECT * FROM OPENROWSET(BULK N'D:\img\Scooter electrico Bongo Serie S Unlimited.jpg', SINGLE_BLOB) as url9)  )
+insert TB_IMAGENES values ('Scooter electrico Bongo Serie A', (SELECT * FROM OPENROWSET(BULK N'D:\img\Scooter electrico Bongo Serie A.jpg', SINGLE_BLOB) as url10)  )
+insert TB_IMAGENES values ('Scooter Eléctrico Ninebot Max G30P', (SELECT * FROM OPENROWSET(BULK N'D:\img\Scooter Eléctrico Ninebot Max G30P.jpg', SINGLE_BLOB) as url11)  )
+
+
+
+insert TB_IMAGENES values ('Lámpara luz frontal 3 LED Ultra brillante', (SELECT * FROM OPENROWSET(BULK N'D:\img\Lámpara luz frontal 3 LED Ultra brillante.jpg', SINGLE_BLOB) as url12)  )
+insert TB_IMAGENES values ('Set de inflador de bolsillo con manómetro', (SELECT * FROM OPENROWSET(BULK N'D:\img\Set de inflador de bolsillo con manómetro.jpg', SINGLE_BLOB) as url13)  )
+insert TB_IMAGENES values ('Set de herramientas múltiples', (SELECT * FROM OPENROWSET(BULK N'D:\img\Set de herramientas múltiples.jpg', SINGLE_BLOB) as url14)  )
+insert TB_IMAGENES values ('Soporte para celular de plástico', (SELECT * FROM OPENROWSET(BULK N'D:\img\Soporte para celular de plástico.jpg', SINGLE_BLOB) as url15)  )
+insert TB_IMAGENES values ('Asiento ajustable para scooter eléctrico', (SELECT * FROM OPENROWSET(BULK N'D:\img\Asiento ajustable para scooter eléctrico.jpg', SINGLE_BLOB) as url16)  )
+insert TB_IMAGENES values ('Luces Bolt combo led', (SELECT * FROM OPENROWSET(BULK N'D:\img\Luces Bolt combo led.jpg', SINGLE_BLOB) as url17)  )
+
+
+
+
+
+
+
+
+select * from TB_IMAGENES
+
 
 --INSERT SCOOTER (10 A 15)
 
-INSERT TB_SCOOTER VALUES('Scooter Eléctrico XIAOMI M365 PRO',1,'Neumaticos de 8.5 pulgadas inflables','Negro','25 km/h','Brushless 300W','De disco ventilado trasero de 120 mm y un sistema de frenos antibloqueo regenerativo E-ABS delantero','Aleación de aluminio',1899,5,null)
+INSERT TB_SCOOTER VALUES('Scooter Eléctrico XIAOMI M365 PRO',1,'Neumaticos de 8.5 pulgadas inflables','Negro','25 km/h','Brushless 300W','De disco ventilado trasero de 120 mm y un sistema de frenos antibloqueo regenerativo E-ABS delantero','Aleación de aluminio',1899,5,7)
 
-INSERT TB_SCOOTER VALUES('Scooter electrico Xiaomi M365',1,'Neumaticos de 8.5 pulgadas inflables','Negro','25 km/h','Brushless 250W','Sistema de frenado de disco y un sistema de frenado antibloqueo regenerativo eABS','Aleación de aluminio',1399,2,null)
+INSERT TB_SCOOTER VALUES('Scooter electrico Xiaomi M365',1,'Neumaticos de 8.5 pulgadas inflables','Negro','25 km/h','Brushless 250W','Sistema de frenado de disco y un sistema de frenado antibloqueo regenerativo eABS','Aleación de aluminio',1399,2,8)
 
-INSERT TB_SCOOTER VALUES('Scooter electrico Bongo Serie S Unlimited',2,'Tubeless antirreventón de 10 pulgadas','Negro','25 km/h','Potencia nominal de 350W','Doble disco de freno delantero y trasero','Aleación de aluminio',2321,3,null)
+INSERT TB_SCOOTER VALUES('Scooter electrico Bongo Serie S Unlimited',2,'Tubeless antirreventón de 10 pulgadas','Negro','25 km/h','Potencia nominal de 350W','Doble disco de freno delantero y trasero','Aleación de aluminio',2321,3,9)
 
-INSERT TB_SCOOTER VALUES('Scooter electrico Bongo Serie A',2,'Tubeless antirreventón de 8,5 pulgadas','Gris','25 km/h','Potencia nominal de 350W','Triple sistema de frenado de seguridad extrema disco-electrico-manual','Aleación de aluminio',1264.57,4,null)
+INSERT TB_SCOOTER VALUES('Scooter electrico Bongo Serie A',2,'Tubeless antirreventón de 8,5 pulgadas','Gris','25 km/h','Potencia nominal de 350W','Triple sistema de frenado de seguridad extrema disco-electrico-manual','Aleación de aluminio',1264.57,4,10)
 
-INSERT TB_SCOOTER VALUES('Scooter Eléctrico Ninebot Max G30P',3,'Neumatico de 10 pulgadas','Gris','25 km/h','350W Brushless','De tambor delantero mecánico simultáneo y el posterior eléctrico regenerativo','Aleación de aluminio',2799,2,null)
+INSERT TB_SCOOTER VALUES('Scooter Eléctrico Ninebot Max G30P',3,'Neumatico de 10 pulgadas','Gris','25 km/h','350W Brushless','De tambor delantero mecánico simultáneo y el posterior eléctrico regenerativo','Aleación de aluminio',2799,2,11)
+
+
 
 INSERT TB_SCOOTER VALUES('Scooter electrico Ninebot ES3',3,'Llanta sólida de 8 pulgadas','Negro','25 km/h','Potencia nominal de 250W','Electrónico y mecánico','Aleación de aluminio',1999.5,5,null)
 
@@ -302,17 +337,24 @@ go
 
 
 --INSERT ACCESORIO (10 A 15)
-INSERT TB_ACCESORIO VALUES('Lámpara luz frontal 3 LED Ultra brillante',11,'Negro','0.1 KG','PVC','Nuevo',null,55,5,null)
 
-INSERT TB_ACCESORIO VALUES('Set de inflador de bolsillo con manómetro',1,'Negro','95 gr','Plástico','','21 cm de alto y 3 cm de ancho',69.90,2,null)
 
-INSERT TB_ACCESORIO VALUES('Set de herramientas múltiples',2,'Negro','500 gr','Acero','','9 x 4.5 x 2.5 cm',39.90,2,null)
+INSERT TB_ACCESORIO VALUES('Lámpara luz frontal 3 LED Ultra brillante',11,'Negro','0.1 KG','PVC','Nuevo',null,55,5,12)
 
-INSERT TB_ACCESORIO VALUES('Soporte para celular de plástico',3,'Negro y Rojo','120 gr','Plástico','','20 cm de alto y 15 cm de ancho',29.90,2,null)
+INSERT TB_ACCESORIO VALUES('Set de inflador de bolsillo con manómetro',1,'Negro','95 gr','Plástico','','21 cm de alto y 3 cm de ancho',69.90,2,13)
 
-INSERT TB_ACCESORIO VALUES('Asiento ajustable para scooter eléctrico ',4,'Negro','2.8 kg','Cuerina Alumnio y Hierro','','16.5 x 27 cm',189.90,2,null)
+INSERT TB_ACCESORIO VALUES('Set de herramientas múltiples',2,'Negro','500 gr','Acero','','9 x 4.5 x 2.5 cm',39.90,2,14)
 
-INSERT TB_ACCESORIO VALUES('Luces Bolt combo led',5,'Negro','30 gr','Aluminio de alta calidad y plástico de nylon de primera clase','20 horas','21 cm de alto y 3 cm de ancho',69.90,2,null)
+INSERT TB_ACCESORIO VALUES('Soporte para celular de plástico',3,'Negro y Rojo','120 gr','Plástico','','20 cm de alto y 15 cm de ancho',29.90,2,15)
+
+INSERT TB_ACCESORIO VALUES('Asiento ajustable para scooter eléctrico ',4,'Negro','2.8 kg','Cuerina Alumnio y Hierro','','16.5 x 27 cm',189.90,2,16)
+
+INSERT TB_ACCESORIO VALUES('Luces Bolt combo led',5,'Negro','30 gr','Aluminio de alta calidad y plástico de nylon de primera clase','20 horas','21 cm de alto y 3 cm de ancho',69.90,2,17)
+
+
+
+
+
 
 INSERT TB_ACCESORIO VALUES('Porta Botella',6,'Negro','50 gr','PVC','',' abrazadera 1.5 pies para botellas de 1 litro',39.90,2,null)
 
@@ -330,17 +372,22 @@ go
 
 --INSERT BICICLETA (10 A 15)
 
-INSERT TB_BICICLETA VALUES('Bicicleta Montañera Monark Dakar Thypoon',6,'Aro 24','Gris','V-Brake Delantero y posterior','16 kg',729,2,null)
 
-INSERT TB_BICICLETA VALUES('Bicicleta Mirage',6,'24','Negro','V Brake','16 kg',849,2,null)
+INSERT TB_BICICLETA VALUES('Bicicleta Montañera Monark Dakar Thypoon',6,'Aro 24','Gris','V-Brake Delantero y posterior','16 kg',729,2,1)
 
-INSERT TB_BICICLETA VALUES('Bicicleta Tricicargo Crosstown',6,'26','Negro','V Brake delantero y tambor posterior','20 kg',1699,2,null)
+INSERT TB_BICICLETA VALUES('Bicicleta Mirage',6,'24','Negro','V Brake','16 kg',849,2,2)
 
-INSERT TB_BICICLETA VALUES('Bicicleta Delta ADV',7,'26','Negro Verde','Disco Delantero y V Brake Trasero','16 kg',549,2,null)
+INSERT TB_BICICLETA VALUES('Bicicleta Tricicargo Crosstown',6,'26','Negro','V Brake delantero y tambor posterior','20 kg',1699,2,3)
 
-INSERT TB_BICICLETA VALUES('Bicicleta Master Bike',7,'26','Negro Verde','V Brake','18 kg',459,2,null)
+INSERT TB_BICICLETA VALUES('Bicicleta Delta ADV',7,'26','Negro Verde','Disco Delantero y V Brake Trasero','16 kg',549,2,4)
 
-INSERT TB_BICICLETA VALUES('Bicicleta XTC JR',8,'20','Metallic Blue','Alloy Linear Pull','18 kg',1199,2,null)
+INSERT TB_BICICLETA VALUES('Bicicleta Master Bike',7,'26','Negro Verde','V Brake','18 kg',459,2,5)
+
+INSERT TB_BICICLETA VALUES('Bicicleta XTC JR',8,'20','Metallic Blue','Alloy Linear Pull','18 kg',1199,2,6)
+
+
+
+
 
 INSERT TB_BICICLETA VALUES('Bicicleta 2020 Suede 2',8,'26','Azul','Aluminio Direct Pull','18 kg',1899,2,null)
 
@@ -362,6 +409,8 @@ select * from TB_BICICLETA
 insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Carlos', 'Gomez', '87654321', 'carlos@gmail.com', '987654321', 't20201', '123');
 insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Pablo', 'Saravia', '82654322', 'pablo@gmail.com', '985644322', 't20202', '123');
 insert TB_TRABAJADOR (nom_trabajador, ape_trabajador, dni_trabajador, correo_trabajador, cel_trabajador, username_trabajador, password_trabajador) values ('Eduardo', 'Cordoba', '87558393', 'eduardo@gmail.com', '985423433', 't20203', '123');
+
+
 
 --GENERAR PEDIDO (2 A 5 )
 
@@ -583,10 +632,11 @@ create proc usp_Accesorio_Insertar
 @desc varchar(350),@codmarca int , @color varchar(200), @peso varchar(200),@material varchar(200),@duracion varchar(200),@dimension varchar(200),@precio decimal,@stock int,@codimg int
 as
 begin
-	insert into TB_ACCESORIO(descrp_accesorio,cod_marca,color_accesorio,peso_accesorio,material_accesorio,duracion_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio,cod_imagen) 
+	insert TB_ACCESORIO(descrp_accesorio,cod_marca,color_accesorio,peso_accesorio,material_accesorio,duracion_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio,cod_imagen) 
 	values (@desc,@codmarca,@color,@peso, @material, @duracion, @dimension,@precio,@stock,@codimg)
 end
 go
+
 
 create proc usp_Accesorio_Actualizar
 @Id int, @desc varchar(350),@codmarca int , @color varchar(200), @peso varchar(200),@material varchar(200),@duracion varchar(200),@dimension varchar(200),@precio decimal,@stock int,@codimg int
