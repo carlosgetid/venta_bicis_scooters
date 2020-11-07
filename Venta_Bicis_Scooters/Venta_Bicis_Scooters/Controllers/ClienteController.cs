@@ -70,10 +70,16 @@ namespace Venta_Bicis_Scooters.Controllers
             }
         }
 
-
+        public ActionResult TodasBicicletas()
+        {
+            return View();
+        }
 
      
-
+        public ActionResult TodosScooter()
+        {
+            return View();
+        }
 
 
     }

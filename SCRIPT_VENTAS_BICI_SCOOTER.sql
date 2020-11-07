@@ -274,6 +274,7 @@ SELECT * FROM TB_MARCA
 --GENERAR IMAGENES (2 A 5 )
 
 
+/*
 insert TB_IMAGENES values ('Bicicleta Montañera Monark Dakar Thypoon', (SELECT * FROM OPENROWSET(BULK N'D:\img\1.jpg', SINGLE_BLOB) as url1)  )
 insert TB_IMAGENES values ('Bicicleta Mirage', (SELECT * FROM OPENROWSET(BULK N'D:\img\Bicicleta Mirage.jpg', SINGLE_BLOB) as url2)  )
 insert TB_IMAGENES values ('Bicicleta Tricicargo Crosstown', (SELECT * FROM OPENROWSET(BULK N'D:\img\Bicicleta Tricicargo Crosstown.jpg', SINGLE_BLOB) as url3)  )
@@ -295,7 +296,7 @@ insert TB_IMAGENES values ('Set de inflador de bolsillo con manómetro', (SELECT 
 insert TB_IMAGENES values ('Set de herramientas múltiples', (SELECT * FROM OPENROWSET(BULK N'D:\img\Set de herramientas múltiples.jpg', SINGLE_BLOB) as url14)  )
 insert TB_IMAGENES values ('Soporte para celular de plástico', (SELECT * FROM OPENROWSET(BULK N'D:\img\Soporte para celular de plástico.jpg', SINGLE_BLOB) as url15)  )
 insert TB_IMAGENES values ('Asiento ajustable para scooter eléctrico', (SELECT * FROM OPENROWSET(BULK N'D:\img\Asiento ajustable para scooter eléctrico.jpg', SINGLE_BLOB) as url16)  )
-insert TB_IMAGENES values ('Luces Bolt combo led', (SELECT * FROM OPENROWSET(BULK N'D:\img\Luces Bolt combo led.jpg', SINGLE_BLOB) as url17)  )
+insert TB_IMAGENES values ('Luces Bolt combo led', (SELECT * FROM OPENROWSET(BULK N'D:\img\Luces Bolt combo led.jpg', SINGLE_BLOB) as url17)  )*/
 
 
 
