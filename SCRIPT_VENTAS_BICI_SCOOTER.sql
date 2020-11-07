@@ -272,8 +272,7 @@ SELECT * FROM TB_MARCA
 
 
 --GENERAR IMAGENES (2 A 5 )
-select * from TB_IMAGENES
-
+insert TB_IMAGENES values (1, 'abc', null) /**metan imagenes aqui**/ 
 
 --INSERT SCOOTER (10 A 15)
 
@@ -458,11 +457,10 @@ begin
 end
 go
 
-exec usp_Scooter_Insertar 'Scooter Electrico Silver N3',5,'Llantas de 9.0 tubeless','Rojo','30 km/h','Brushless 250W','Delantero','Aleación de aluminio',1199,5,null
+
 select * from TB_SCOOTER
 go
 
-/*
 create proc usp_Scooter_Actualizar
 @Cod_Scooter int, @Descrp_Scooter varchar(350), @Cod_Marca int, @Aro_Scooter varchar(200), 
 @Color_Scooter varchar(200), @Velocidad_Scooter varchar(200), 
@@ -476,8 +474,6 @@ begin
 end
 go
 
-exec usp_Scooter_Actualizar 'Scooter Electrico Silver N4',5,'Llantas de 9.0 tubeless','Rojo','30 km/h','Brushless 250W','Trasero','Aleación de aluminio',1299,5,null
-*/
 
 
 

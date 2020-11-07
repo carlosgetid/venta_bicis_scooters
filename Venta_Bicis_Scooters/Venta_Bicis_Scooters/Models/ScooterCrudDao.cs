@@ -25,7 +25,31 @@ namespace Venta_Bicis_Scooters.Models
 
         public void InsertScooter(Scooter e)
         {
-            throw new NotImplementedException();
+            SqlConnection cn = AccesoDato.getConnection();
+            SqlCommand cmd = new SqlCommand("usp_Scooter_Insertar", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Descrp_Scooter",e.Descripcion);
+            cmd.Parameters.AddWithValue("@Cod_Marca", e.codMarca);
+            cmd.Parameters.AddWithValue("@Aro_Scooter", e.Aro);
+            cmd.Parameters.AddWithValue("@Color_Scooter", e.Color);
+            cmd.Parameters.AddWithValue("@Velocidad_Scooter", e.Velocidad);
+            cmd.Parameters.AddWithValue("@Motor_Scooter", e.Motor);
+            cmd.Parameters.AddWithValue("@Freno_Scooter", e.Freno);
+            cmd.Parameters.AddWithValue("@Material_Scooter", e.Material);
+            cmd.Parameters.AddWithValue("@Precio_Scooter", e.Precio);
+            cmd.Parameters.AddWithValue("@Stock_Scooter", e.Stock);
+            cmd.Parameters.AddWithValue("@Cod_Imagen", 0);
+
+            try
+            {
+                cn.Open();
+                bool salida = cmd.ExecuteNonQuery() == 1 ? true : false;
+                cn.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
         }
 
         public List<Scooter> ListarScooter()

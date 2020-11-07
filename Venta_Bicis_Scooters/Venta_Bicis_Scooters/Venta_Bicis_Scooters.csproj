@@ -2287,6 +2287,7 @@
     <Content Include="Views\Home\CreateImagen.cshtml" />
     <Content Include="Views\Home\EditImagen.cshtml" />
     <Content Include="Views\Home\DetailsImagen.cshtml" />
+    <Content Include="Views\Home\CreateScooter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
