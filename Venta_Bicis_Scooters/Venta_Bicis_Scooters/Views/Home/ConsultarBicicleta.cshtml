@@ -32,7 +32,7 @@
 
         <tr>
             <td colspan="2" align="center">
-                <input type="submit" value="Consultar" class="btn btn-success" />
+                <input type="submit" value="Consultar" class="btn btn-outline-success" />
             </td>
         </tr>
 
@@ -42,70 +42,73 @@
 <br />
 
 <div class="table-wrapper-scroll-y my-custom-scrollbar">
-    <table class="table table-bordered">
+    <table class="table table-bordered table-striped mb-0">
         <tr>
-            <th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Descripcion)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Marca)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Aro)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Color)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Freno)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Peso)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Precio)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Stock)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.codMarca)
-            </th>
+           
 
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Marca)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Aro)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Color)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Freno)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Peso)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Precio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Stock)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.codMarca)
-                </td>
+    <tr>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.Marca)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.Aro)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.Color)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.Freno)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.Peso)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.Precio)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.Stock)
+        </td>
+      
+      
 
-            </tr>
+    </tr>
         }
 
     </table>

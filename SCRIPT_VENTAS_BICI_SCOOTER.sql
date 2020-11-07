@@ -95,8 +95,8 @@ cod_marca int not null,
 color_accesorio varchar(200) not null,
 peso_accesorio varchar(200) not null,
 material_accesorio varchar(200) not null,
-duracion_accesorio varchar(200) not null,
-dimension_accesorio varchar(200) not null,
+duracion_accesorio varchar(200)  null,
+dimension_accesorio varchar(200)  null,
 precio_accesorio decimal not null,
 stock_accesorio int not null,
 cod_imagen int
@@ -265,6 +265,8 @@ INSERT TB_MARCA VALUES('Giant')
 INSERT TB_MARCA VALUES('Liv')
 INSERT TB_MARCA VALUES('Felt')
 
+--ACCESORIO
+INSERT TB_MARCA VALUES('CAR-partment')
 
 SELECT * FROM TB_MARCA
 
@@ -296,7 +298,9 @@ go
 
 
 --INSERT ACCESORIO (10 A 15)
+INSERT TB_ACCESORIO VALUES('Lámpara luz frontal 3 LED Ultra brillante',11,'Negro','0.1 KG','PVC','Nuevo',null,55,5,null)
 
+<<<<<<< HEAD
 INSERT TB_SCOOTER VALUES('Set de inflador de bolsillo con manómetro',1,'Negro','95 gr','Plástico','','21 cm de alto y 3 cm de ancho',69.90,2,null)
 
 INSERT TB_SCOOTER VALUES('Set de herramientas múltiples',2,'Negro','500 gr','Acero','','9 x 4.5 x 2.5 cm',39.90,2,null)
@@ -342,11 +346,21 @@ INSERT TB_SCOOTER VALUES('Bicicleta Fr Advanced Ultegra Plasma Red',10,'24','Roj
 INSERT TB_SCOOTER VALUES('Bicicleta Fr Advanced Ultegra Aquafresh',10,'24','Oceano','Disco hidráulico Shimano BR8070','10 kg',2500,2,null)	
 
 =======
+=======
+select * from TB_ACCESORIO
+
+--INSERT BICICLETA (10 A 15)
+
+
+
+
+
+>>>>>>> f42408364c320cd9870a2eb66afc6e653a35c25f
 INSERT TB_BICICLETA VALUES('Bicicleta Montañera Monark Dakar Thypoon',6,'Aro 24','Gris','V-Brake Delantero y posterior','16 kg',729,2,null)
 
 
 select * from TB_BICICLETA
->>>>>>> e52f090e7a37b16547996f8b327e3ad44bf9956c
+
 
 --INSERT TRABAJADOR (1 a 4)
 
@@ -473,6 +487,46 @@ end
 go
 
 
+
+create proc usp_Bicicleta_Insertar
+@desc varchar(350),@codmarca int ,@aro varchar(200), @color varchar(200),@freno varchar(200), @peso varchar(200),@precio decimal,@stock int,@codimg int
+as
+begin
+	insert into TB_BICICLETA (descrp_bicicleta,cod_marca,aro_bicicleta,color_bicicleta,freno_bicicleta,peso_bicicleta,precio_bicicleta,stock_bicicleta,cod_imagen) 
+	values (@desc,@codmarca,@aro,@color,@freno,@peso,@precio,@stock,@codimg)
+end
+go
+
+create proc usp_Bicicleta_Actualizar
+@Id int, @desc varchar(350),@codmarca int ,@aro varchar(200), @color varchar(200),@freno varchar(200), @peso varchar(200),@precio decimal,@stock int,@codimg int
+as
+begin
+	update TB_BICICLETA 
+	set	descrp_bicicleta=@desc,
+		cod_marca=@codmarca,
+		aro_bicicleta=@aro,
+		color_bicicleta=@color,
+		freno_bicicleta=@freno,
+		peso_bicicleta=@peso,
+		precio_bicicleta=@precio,
+		stock_bicicleta=@stock,
+		cod_imagen=@codimg
+	where cod_bicicleta=@Id
+end
+go
+
+
+create proc usp_Bicicleta_Buscar
+@id int 
+as
+begin
+	select cod_bicicleta,descrp_bicicleta,cod_marca,aro_bicicleta,color_bicicleta,freno_bicicleta,peso_bicicleta,precio_bicicleta,stock_bicicleta,cod_imagen
+	from TB_BICICLETA 
+	where cod_bicicleta=@id
+end
+go
+
+
 create proc usp_Bicicleta_Consultar
 @descp_bicicleta varchar(350),
 @cod_marca int 
@@ -487,4 +541,65 @@ go
 
 
 
+-----------------------------------------------------------------------------
+/*** TABLA ACCESORIO *****/
 
+create proc usp_Accesorio_Listar
+as
+begin
+	select cod_accesorio,descrp_accesorio,m.descrp_marca,color_accesorio,peso_accesorio,material_accesorio,duracion_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio
+	from TB_ACCESORIO a
+	join TB_MARCA m on a.cod_marca=m.cod_marca
+end
+go
+
+create proc usp_Accesorio_Insertar
+@desc varchar(350),@codmarca int , @color varchar(200), @peso varchar(200),@material varchar(200),@duracion varchar(200),@dimension varchar(200),@precio decimal,@stock int,@codimg int
+as
+begin
+	insert into TB_ACCESORIO(descrp_accesorio,cod_marca,color_accesorio,peso_accesorio,material_accesorio,duracion_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio,cod_imagen) 
+	values (@desc,@codmarca,@color,@peso, @material, @duracion, @dimension,@precio,@stock,@codimg)
+end
+go
+
+create proc usp_Accesorio_Actualizar
+@Id int, @desc varchar(350),@codmarca int , @color varchar(200), @peso varchar(200),@material varchar(200),@duracion varchar(200),@dimension varchar(200),@precio decimal,@stock int,@codimg int
+as
+begin
+	update TB_ACCESORIO
+	set descrp_accesorio=@desc,
+		cod_marca=@codmarca,
+		color_accesorio=@color,
+		peso_accesorio=@peso,
+		material_accesorio=@material,
+		duracion_accesorio=@duracion,
+		dimension_accesorio=@dimension,
+		precio_accesorio=@precio,
+		stock_accesorio=@stock,
+		cod_imagen=@codimg
+	where cod_accesorio=@Id
+end
+go
+
+create proc usp_Accesorio_Buscar
+@Id int
+as
+begin
+	select cod_accesorio,descrp_accesorio,cod_marca,color_accesorio,peso_accesorio,material_accesorio,duracion_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio,cod_imagen
+	from TB_ACCESORIO 
+	where cod_accesorio=@Id
+end
+go
+
+
+create proc usp_Accesorio_Consultar
+@descp_accesorio varchar(350),
+@cod_marca int 
+as
+begin
+	select cod_accesorio,descrp_accesorio,m.descrp_marca,color_accesorio,peso_accesorio,material_accesorio,duracion_accesorio,dimension_accesorio,precio_accesorio,stock_accesorio
+	from TB_ACCESORIO a
+	join TB_MARCA m on a.cod_marca=m.cod_marca
+	where @descp_accesorio= '' or UPPER(descrp_accesorio)=UPPER(@descp_accesorio) and a.cod_marca=@cod_marca 
+end
+go

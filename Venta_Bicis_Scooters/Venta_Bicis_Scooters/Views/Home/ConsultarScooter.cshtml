@@ -30,7 +30,7 @@
 
         <tr>
             <td colspan="2" align="center">
-                <input type="submit" value="Consultar" class="btn btn-success" />
+                <input type="submit" value="Consultar" class="btn btn-outline-success" />
             </td>
         </tr>
 
@@ -43,37 +43,37 @@
      
     <table class="table table-bordered table-striped mb-0">
         <tr>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.ID)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Descripcion)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Marca)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Aro)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Color)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Velocidad)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Motor)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Freno)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Material)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Precio)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Stock)
             </th>
 
@@ -83,37 +83,37 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.ID)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Descripcion)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Marca)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Aro)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Color)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Velocidad)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Motor)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Freno)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Material)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Precio)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Stock)
                 </td>
 

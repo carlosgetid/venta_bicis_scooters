@@ -8,37 +8,37 @@
 <h2>Listado de Bicicleta</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nueva Bicicleta", "Create", null, new { @class = "btn btn-outline-success" })
 </p>
 
 <div class="table-wrapper-scroll-y my-custom-scrollbar">
-    <table class="table">
+    <table class="table table-bordered table-striped mb-0" >
         <tr>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.ID)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Descripcion)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Marca)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Aro)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Color)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Freno)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Peso)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Precio)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Stock)
             </th>
           
@@ -48,38 +48,38 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.ID)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Descripcion)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Marca)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Aro)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Color)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Freno)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Peso)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Precio)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Stock)
                 </td>
               
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                <td class="text-center">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-outline-success" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-outline-primary" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-outline-danger" })
                 </td>
             </tr>
         }

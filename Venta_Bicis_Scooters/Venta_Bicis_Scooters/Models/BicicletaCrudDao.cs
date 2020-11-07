@@ -14,7 +14,43 @@ namespace Venta_Bicis_Scooters.Models
     {
         public Bicicleta BuscarBicicleta(int id)
         {
-            throw new NotImplementedException();
+            Bicicleta emp = null;
+            try
+            {
+                SqlConnection cn = AccesoDato.getConnection();
+                SqlCommand cmd = new SqlCommand("usp_Bicicleta_Buscar", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    emp = new Bicicleta()
+                    {
+                        ID = Convert.ToInt32(dr["cod_bicicleta"]),
+                        Descripcion = dr["descrp_bicicleta"].ToString(),
+                        codMarca = Convert.ToInt32(dr["cod_marca"].ToString()),
+                        Aro = dr["aro_bicicleta"].ToString(),
+                        Color = dr["color_bicicleta"].ToString(),
+                        Freno = dr["freno_bicicleta"].ToString(),
+                        Peso = dr["peso_bicicleta"].ToString(),
+                        Precio = Convert.ToDouble(dr["precio_bicicleta"]),
+                        Stock = Convert.ToInt32(dr["stock_bicicleta"])
+                        /*codImg = Convert.ToInt32(dr["cod_imagen"])*/
+
+                    };
+                }
+                dr.Close();
+                cn.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            return emp;
         }
 
         public List<Bicicleta> ConsultaBicicleta(int cod, string descripcion)
@@ -66,7 +102,31 @@ namespace Venta_Bicis_Scooters.Models
 
         public void InsertBicicleta(Bicicleta e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                SqlConnection cn = AccesoDato.getConnection();
+                SqlCommand cmd = new SqlCommand("usp_Bicicleta_Insertar", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+
+                cmd.Parameters.AddWithValue("@desc", e.Descripcion);
+                cmd.Parameters.AddWithValue("@codmarca", e.codMarca);
+                cmd.Parameters.AddWithValue("@aro", e.Aro);
+                cmd.Parameters.AddWithValue("@color", e.Color);
+                cmd.Parameters.AddWithValue("@freno", e.Freno);
+                cmd.Parameters.AddWithValue("@peso", e.Peso);
+                cmd.Parameters.AddWithValue("@precio", e.Precio);
+                cmd.Parameters.AddWithValue("@stock", e.Stock);
+                cmd.Parameters.AddWithValue("@codimg", e.codImg);
+
+                cn.Open();
+                bool iresult = cmd.ExecuteNonQuery() == 1 ? true : false;
+                cn.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
         }
 
         public List<Bicicleta> ListarBicicleta()
@@ -110,7 +170,32 @@ namespace Venta_Bicis_Scooters.Models
 
         public void UpdateBicicleta(Bicicleta e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                SqlConnection cn = AccesoDato.getConnection();
+                SqlCommand cmd = new SqlCommand("usp_Bicicleta_Actualizar", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Id", e.ID);
+                cmd.Parameters.AddWithValue("@desc", e.Descripcion);
+                cmd.Parameters.AddWithValue("@codmarca", e.codMarca);
+                cmd.Parameters.AddWithValue("@aro", e.Aro);
+                cmd.Parameters.AddWithValue("@color", e.Color);
+                cmd.Parameters.AddWithValue("@freno", e.Freno);
+                cmd.Parameters.AddWithValue("@peso", e.Peso);
+                cmd.Parameters.AddWithValue("@precio", e.Precio);
+                cmd.Parameters.AddWithValue("@stock", e.Stock);
+                cmd.Parameters.AddWithValue("@codimg", e.codImg);
+
+                cn.Open();
+                bool iresult = cmd.ExecuteNonQuery() == 1 ? true : false;
+                cn.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+
         }
     
     

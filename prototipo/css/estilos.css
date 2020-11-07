@@ -1,0 +1,14 @@
+#imagen{
+    float: left;
+    background-color: red;
+    height: 500px;
+    width: 600px;
+    
+}
+
+#detalles{
+    float: left;
+    background-color: blue;
+    height: 500px;
+    width: 500px;
+}
