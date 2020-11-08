@@ -2291,7 +2291,7 @@
     <Content Include="Views\Cliente\TodasBicicletas.cshtml" />
     <Content Include="Views\Cliente\TodosScooter.cshtml" />
     <Content Include="Views\Home\ConsultarCliente.cshtml" />
-
+    <Content Include="Views\Cliente\TodosAccesorios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
