@@ -81,6 +81,10 @@ namespace Venta_Bicis_Scooters.Controllers
             return View();
         }
 
+        public ActionResult TodosAccesorios()
+        {
+            return View();
+        }
 
     }
 }
