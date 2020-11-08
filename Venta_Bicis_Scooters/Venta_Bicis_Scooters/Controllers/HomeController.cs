@@ -245,7 +245,7 @@ namespace Venta_Bicis_Scooters.Controllers
                 Bicicleta emp = bicicletadao.BuscarBicicleta(id);
 
                 ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca",emp.codMarca);
-                ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen", emp.ID);
+                ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen", emp.codImg);
 
                 return View(bicicletadao.BuscarBicicleta(id));
             }
@@ -270,7 +270,7 @@ namespace Venta_Bicis_Scooters.Controllers
                     if (ModelState.IsValid)
                     {
                         ViewBag.marca = new SelectList(marcadao.ListarMarca(), "IdMarca", "descMarca", emp.codMarca);
-                        ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen", emp.ID);
+                        ViewBag.imagen = new SelectList(db.TB_IMAGENES.ToList(), "cod_imagen", "descrp_imagen", emp.codImg);
 
                         bicicletadao.UpdateBicicleta(emp);
 
