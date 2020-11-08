@@ -40,7 +40,6 @@ namespace Venta_Bicis_Scooters.Models
                         Precio = Convert.ToDouble(dr["precio_bicicleta"]),
                         Stock = Convert.ToInt32(dr["stock_bicicleta"]),
                         codImg = Convert.ToInt32(dr["cod_imagen"])
-
                     };
                 }
                 dr.Close();
