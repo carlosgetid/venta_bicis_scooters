@@ -55,8 +55,8 @@ namespace Venta_Bicis_Scooters_2
             //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-               appId: "372147733896501",
-               appSecret: "85566fe0b3fd58b126cdc1c0793c6faf");
+               appId: "360656161934348",
+               appSecret: "dbb8bc779b0d510863e7aca472d7933e");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

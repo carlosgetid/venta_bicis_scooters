@@ -6,11 +6,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Venta_Bicis_Scooters_2.Controllers
+namespace Venta_Bicis_Scooters.Controllers
 {
     public class ClienteController : Controller
     {   
-      
+        
 
 
 
@@ -27,7 +27,7 @@ namespace Venta_Bicis_Scooters_2.Controllers
 
 
 
-       
+        
 
     }
 }

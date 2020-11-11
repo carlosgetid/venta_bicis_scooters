@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.1267
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Venta_Bicis_Scooters", "Venta_Bicis_Scooters\Venta_Bicis_Scooters.csproj", "{3999B289-1AC7-4BA3-BBC8-DA707D337AC4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Venta_Bicis_Scooters_2", "..\Venta_Bicis_Scooters_2\Venta_Bicis_Scooters_2.csproj", "{3E6B0ECD-616B-4D2B-83B3-7310F825BA4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3999B289-1AC7-4BA3-BBC8-DA707D337AC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3999B289-1AC7-4BA3-BBC8-DA707D337AC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3999B289-1AC7-4BA3-BBC8-DA707D337AC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E6B0ECD-616B-4D2B-83B3-7310F825BA4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E6B0ECD-616B-4D2B-83B3-7310F825BA4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E6B0ECD-616B-4D2B-83B3-7310F825BA4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E6B0ECD-616B-4D2B-83B3-7310F825BA4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
